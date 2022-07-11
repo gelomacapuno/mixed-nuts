@@ -7,7 +7,9 @@ public class MyTextField extends JTextField {
         setText(text);
         setBounds(x,y,width,height);
         setFont(font);
-        setOpaque(false);
+        setBorder(BorderFactory.createEmptyBorder());
+        setBackground(Color.white);
+        setHorizontalAlignment(JTextField.CENTER);
     }
 
 
