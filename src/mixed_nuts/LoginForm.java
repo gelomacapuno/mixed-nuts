@@ -1,13 +1,17 @@
 package mixed_nuts;
+import mixed_nuts.admin.AdminMenu;
 import mixed_nuts.components.*;
+import mixed_nuts.doctor.DoctorMenu;
+import mixed_nuts.nurse.NurseMenu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class LoginForm extends JFrame{
     public MyPanel DisplayPanel = new MyPanel(new Color(0xF1F1F1),416,54,448,510);
-    public MyTextField DeptCode;
-    public JPasswordField EmpID;
+    public MyTextField empID;
+    public JPasswordField empPassword;
     private MyButton login, power, help, about;
     private int posX, posY;
 
@@ -29,46 +33,63 @@ public class LoginForm extends JFrame{
         DisplayPanel.add(new MyLabel("SIGN IN",Color.black,new Font("Bebas Neue",Font.TRUETYPE_FONT,45), 174,81,480,50));
         DisplayPanel.add(new ImageLabel(new ImageIcon("sign_in_logo.png"),179,22,90,59));
 
-        //Text Fields
-        DeptCode = new MyTextField("Dept Code", 59,177,330,40, new Font("Roboto",Font.PLAIN,22));
-        DeptCode.loginField();
-        DeptCode.addFocusListener(new FocusListener() {
+        //Text Fields and Combo Boxes
+        String[] department = {"Select Department",
+                "Cardiology",
+                "Gastroenterology",
+                "Gynecology",
+                "Nephrology",
+                "Neurology",
+                "Oncology",
+                "Ophthalmology",
+                "Orthopaedics",
+                "Otolaryngology",
+                "Urology"};
+        JComboBox<String> empDept = new JComboBox<>(department);
+        empDept.setBounds(59,170,330,40);
+        empDept.setFont(new Font("Helvetica", Font.PLAIN, 22));
+
+        empID = new MyTextField("Employee ID", 59,240,330,40, new Font("Roboto",Font.PLAIN,22));
+        empID.setBackground(new Color(0xF1F1F1));
+        empID.setHorizontalAlignment(SwingConstants.LEFT);
+        empID.loginField();
+        empID.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (DeptCode.getText().equals("Dept Code")) {
-                    DeptCode.setText("");
-                    DeptCode.setForeground(Color.BLACK);
+                if (empID.getText().equals("Employee ID")) {
+                    empID.setText("");
+                    empID.setForeground(Color.BLACK);
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (DeptCode.getText().isEmpty()) {
-                    DeptCode.setForeground(Color.BLACK);
-                    DeptCode.setText("Dept Code");
+                if (empID.getText().isEmpty()) {
+                    empID.setForeground(Color.BLACK);
+                    empID.setText("Employee ID");
                 }
             }
         });
-        EmpID = new JPasswordField("Employee ID");
-        EmpID.setEchoChar((char) 0);
-        EmpID.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
-        EmpID.setBounds(59,283,330,40);
-        EmpID.setFont(new Font("Roboto", Font.PLAIN, 22));
-        EmpID.setOpaque(false);
-        EmpID.addFocusListener(new FocusListener() {
+        empPassword = new JPasswordField("Password");
+        empPassword.setEchoChar((char) 0);
+        empPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+        empPassword.setBounds(59,320,330,40);
+        empPassword.setFont(new Font("Roboto", Font.PLAIN, 22));
+        empPassword.setOpaque(false);
+        empPassword.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (EmpID.getText().equals("Employee ID")) {
-                    EmpID.setText("");
-                    EmpID.setEchoChar('•');
-                    EmpID.setForeground(Color.BLACK);
+                if (empPassword.getText().equals("Password")) {
+                    empPassword.setText("");
+                    empPassword.setEchoChar('•');
+                    empPassword.setForeground(Color.BLACK);
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if (EmpID.getText().isEmpty()) {
-                    EmpID.setEchoChar((char) 0);
-                    EmpID.setForeground(Color.BLACK);
-                    EmpID.setText("Employee ID");
+                if (empPassword.getText().isEmpty()) {
+                    empPassword.setEchoChar((char) 0);
+                    empPassword.setForeground(Color.BLACK);
+                    empPassword.setText("Password");
                 }
             }
         });
@@ -80,8 +101,9 @@ public class LoginForm extends JFrame{
         login.addActionListener(e -> validateLogin());
 
         //All text fields
-        DisplayPanel.add(DeptCode);
-        DisplayPanel.add(EmpID);
+        DisplayPanel.add(empDept);
+        DisplayPanel.add(empID);
+        DisplayPanel.add(empPassword);
         add(DisplayPanel);
     }
     public void SetDisplayContainer(){
@@ -123,8 +145,18 @@ public class LoginForm extends JFrame{
         getContentPane().add(displayContainer);
     }
     public void validateLogin(){
-        new MainMenu();
-        setVisible(false);
+        if (empID.getText().equals("Doctor")){
+            setVisible(false);
+            new DoctorMenu();
+        }else if (empID.getText().equals("Nurse")){
+            setVisible(false);
+            new NurseMenu();
+        }else if(empID.getText().equals("Admin")){
+            setVisible(false);
+            new AdminMenu();
+        }else{
+            JOptionPane.showMessageDialog(null,"Doctor, Nurse, at Admin muna yung Employee ID");
+        }
     }
 }
 

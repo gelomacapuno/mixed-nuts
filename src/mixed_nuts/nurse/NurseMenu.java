@@ -1,4 +1,7 @@
-package mixed_nuts;
+package mixed_nuts.nurse;
+import mixed_nuts.AboutWindow;
+import mixed_nuts.HelpWindow;
+import mixed_nuts.LoginForm;
 import mixed_nuts.components.*;
 import javax.swing.*;
 import java.awt.*;
@@ -8,18 +11,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class MainMenu  implements ActionListener {
+public class NurseMenu implements ActionListener {
     private int posX, posY;
-    private MyButton addButton,searchButton, homeButton;
+    private static MyButton addButton;
+    private static MyButton searchButton;
+    private static MyButton homeButton;
     public static JFrame frame = new JFrame();
     public final CardLayout cl = new CardLayout(); //for setLayout();
     public final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
-    public MainMenu(){
+    public NurseMenu(){
         setNavPanel();
         setDisplayPanel();
         frame.setSize(1280, 720);
         frame.setLayout(null);
-        frame.setResizable(false);
+        frame.setResizable(true);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +93,7 @@ public class MainMenu  implements ActionListener {
         });
     }
 
-    private void setHoverButton(JButton button){
+    private static void setHoverButton(JButton button){
         button.addMouseListener(new MouseAdapter()
         {
             public void mouseEntered(MouseEvent evt)
@@ -104,9 +109,10 @@ public class MainMenu  implements ActionListener {
     private void setDisplayPanel(){
 
         cardPanel.setLayout(cl);
-        cardPanel.add("Home",new HomePage());
-        cardPanel.add("add",new AddForm());
-        cardPanel.add("search", new SearchForm());
+        cardPanel.add("Home",new NurseHome());
+        cardPanel.add("add",new NurseAdd());
+        cardPanel.add("search", new NurseSearch());
+        cardPanel.add("Change", new NurseChange());
         cardPanel.setBounds(286,0,994,720);
         cl.show(cardPanel,"Home");
         setActiveHoverButton(homeButton);
@@ -115,7 +121,7 @@ public class MainMenu  implements ActionListener {
         frame.add(cardPanel);
     }
 
-    private void hideAllDisplayPanel(){
+    private static void hideAllDisplayPanel(){
         homeButton.setBackground(new Color(0xFFAE52));
         addButton.setBackground(new Color(0xFFAE52));
         searchButton.setBackground(new Color(0xFFAE52));
@@ -124,6 +130,13 @@ public class MainMenu  implements ActionListener {
     public static void close(){
         frame.dispose();
         new LoginForm();
+    }
+
+    public static void changePass(){
+        hideAllDisplayPanel();
+        setHoverButton(addButton);
+        setHoverButton(homeButton);
+        setHoverButton(searchButton);
     }
 
 
@@ -155,6 +168,7 @@ public class MainMenu  implements ActionListener {
             cl.show(cardPanel, "search");
             searchButton.setBackground(new Color(0xF7D8B7));
         }
+
 
 }
     }

@@ -1,19 +1,21 @@
-package mixed_nuts;
+package mixed_nuts.nurse;
 
 import com.toedter.calendar.JDateChooser;
 import mixed_nuts.components.*;
+import mixed_nuts.nurse.NurseMenu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class AddForm extends JPanel implements ActionListener {
+public class NurseAdd extends JPanel implements ActionListener {
     private MyPanel addFormPanel;
     public MyButton logout, confirm;
     public JLabel heading;
 
-    public AddForm(){
+    public NurseAdd(){
         addFields();
         setLayout(null);
         setBackground(new Color(0x142959));
@@ -125,20 +127,33 @@ public class AddForm extends JPanel implements ActionListener {
     }
 
     private void setBGDesign(){
+        String[] user = {"Welcome back! <user>", "Change Password", "Logout"};
+        JComboBox<String> userMenu = new JComboBox<>(user);
+        userMenu.setBounds(630,20,350,41);
+        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        add(userMenu);
 
-        add(heading = new JLabel(""));
-        heading.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        heading.setForeground(Color.white);
-        heading.setBounds(17, 20, 894, 68);
+        userMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (userMenu.getSelectedItem().toString().equals("Change Password")){
+                    userMenu.setSelectedIndex(0);
+                    NurseMenu.changePass();
+                }
+                if (userMenu.getSelectedItem().toString().equals("Logout")){
+                    userMenu.setSelectedIndex(0);
+                    NurseMenu.close();
+                }
+            }
+        });
         add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
-        add(logout = new MyButton(new ImageIcon("log_out.png"),841,20,123,41,null,null));
-        logout.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == logout)
-            MainMenu.close();
+            NurseMenu.close();
 
         if(e.getSource() == confirm){
             JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
