@@ -1,6 +1,5 @@
 package mixed_nuts.doctor;
 import mixed_nuts.AboutWindow;
-import mixed_nuts.nurse.NurseAdd;
 import mixed_nuts.HelpWindow;
 import mixed_nuts.LoginForm;
 import mixed_nuts.components.*;
@@ -14,10 +13,11 @@ import java.awt.event.MouseEvent;
 
 public class DoctorMenu implements ActionListener {
     private int posX, posY;
-    private MyButton searchButton, homeButton;
+    private static MyButton searchButton;
+    private static MyButton homeButton;
     public static JFrame frame = new JFrame();
-    public final CardLayout cl = new CardLayout(); //for setLayout();
-    public final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
+    public static final CardLayout cl = new CardLayout(); //for setLayout();
+    public static final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
     public DoctorMenu(){
         setNavPanel();
         setDisplayPanel();
@@ -86,7 +86,7 @@ public class DoctorMenu implements ActionListener {
         });
     }
 
-    private void setHoverButton(JButton button){
+    private static void setHoverButton(JButton button){
         button.addMouseListener(new MouseAdapter()
         {
             public void mouseEntered(MouseEvent evt)
@@ -104,6 +104,7 @@ public class DoctorMenu implements ActionListener {
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new DoctorHome());
         cardPanel.add("search", new DoctorSearch());
+        cardPanel.add("Change",new DoctorChange());
         cardPanel.setBounds(286,0,994,720);
         cl.show(cardPanel,"Home");
         setActiveHoverButton(homeButton);
@@ -111,7 +112,7 @@ public class DoctorMenu implements ActionListener {
         frame.add(cardPanel);
     }
 
-    private void hideAllDisplayPanel(){
+    private static void hideAllDisplayPanel(){
         homeButton.setBackground(new Color(0xFFAE52));
         searchButton.setBackground(new Color(0xFFAE52));
     }
@@ -119,6 +120,14 @@ public class DoctorMenu implements ActionListener {
     public static void close(){
         frame.dispose();
         new LoginForm();
+    }
+
+
+    public static void changePass(){
+        cl.show(cardPanel,"Change");
+        hideAllDisplayPanel();
+        setHoverButton(homeButton);
+        setHoverButton(searchButton);
     }
 
 

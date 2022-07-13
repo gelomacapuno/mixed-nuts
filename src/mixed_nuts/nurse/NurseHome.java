@@ -44,17 +44,8 @@ public class NurseHome extends JPanel  {
 
         add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
 
-        /*add(heading = new JLabel(""));
-        heading.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        heading.setForeground(Color.white);
-        heading.setBounds(17, 20, 894, 68);
 
-        add(logout = new MyButton(new ImageIcon("log_out.png"),841,20,123,41,null,null));
-        logout.addActionListener(this);*/
     }
 
-   /* @Override
-    public void actionPerformed(ActionEvent e) {
-        NurseMenu.close();
-    }*/
+
 }

@@ -1,20 +1,21 @@
-package mixed_nuts.nurse;
+package mixed_nuts.doctor;
 
 import mixed_nuts.components.ImageLabel;
 import mixed_nuts.components.MyLabel;
 import mixed_nuts.components.MyPanel;
 import mixed_nuts.components.MyTextField;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NurseChange extends JPanel {
+public class DoctorChange extends JPanel {
     private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
     private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
     public MyPanel panel;
-    public NurseChange(){
+    public DoctorChange(){
         setBGDesign();
         changePassForm();
         setLayout(null);
@@ -36,11 +37,11 @@ public class NurseChange extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (userMenu.getSelectedItem().toString().equals("Change Password")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
+
                 }
                 if (userMenu.getSelectedItem().toString().equals("Logout")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
+                    DoctorMenu.close();
                 }
             }
         });

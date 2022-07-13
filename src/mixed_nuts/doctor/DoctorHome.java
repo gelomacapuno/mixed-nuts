@@ -4,6 +4,7 @@ import mixed_nuts.components.ImageLabel;
 import mixed_nuts.components.MyPanel;
 import mixed_nuts.nurse.NurseMenu;
 
+import javax.print.Doc;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,11 +31,11 @@ public class DoctorHome extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (userMenu.getSelectedItem().toString().equals("Change Password")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.changePass();
+                    DoctorMenu.changePass();
                 }
                 if (userMenu.getSelectedItem().toString().equals("Logout")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
+                    DoctorMenu.close();
                 }
             }
         });

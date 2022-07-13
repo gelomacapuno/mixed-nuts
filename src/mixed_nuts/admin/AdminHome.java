@@ -21,7 +21,7 @@ public class AdminHome extends JPanel {
         setBackground(new Color(0x142959));
 
         add(panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630));
-        String[] user = {"Welcome back! <user>", "Change Password", "Logout"};
+        String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630, 20, 350, 41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));

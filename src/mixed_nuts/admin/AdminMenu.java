@@ -5,11 +5,6 @@ import mixed_nuts.HelpWindow;
 import mixed_nuts.LoginForm;
 import mixed_nuts.components.MyButton;
 import mixed_nuts.components.MyPanel;
-import mixed_nuts.nurse.NurseAdd;
-import mixed_nuts.nurse.NurseChange;
-import mixed_nuts.nurse.NurseHome;
-import mixed_nuts.nurse.NurseSearch;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,8 +17,8 @@ public class AdminMenu implements ActionListener {
     public static JFrame frame = new JFrame();
     private static MyButton addButton, searchButton, homeButton;
 
-    public final CardLayout cl = new CardLayout(); //for setLayout();
-    public final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
+    public static final CardLayout cl = new CardLayout();
+    public static final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
 
     public AdminMenu(){
         setNavPanel();
@@ -34,7 +29,7 @@ public class AdminMenu implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setUndecorated(false);
+        frame.setUndecorated(true);
         frame.setVisible(true);
 
     }
@@ -125,6 +120,7 @@ public class AdminMenu implements ActionListener {
     }
 
     public static void changePass(){
+        cl.show(cardPanel,"Change");
         hideAllDisplayPanel();
         setHoverButton(addButton);
         setHoverButton(homeButton);
@@ -151,6 +147,7 @@ public class AdminMenu implements ActionListener {
         if(e.getSource() == homeButton){
             hideAllDisplayPanel();
             setActiveHoverButton(homeButton);
+            setHoverButton(addButton);
             setHoverButton(searchButton);
             cl.show(cardPanel, "Home");
             homeButton.setBackground(new Color(0xF7D8B7));
@@ -168,6 +165,7 @@ public class AdminMenu implements ActionListener {
         if(e.getSource() == searchButton) {
             setActiveHoverButton(searchButton);
             setHoverButton(homeButton);
+            setHoverButton(addButton);
             hideAllDisplayPanel();
             cl.show(cardPanel, "search");
             searchButton.setBackground(new Color(0xF7D8B7));

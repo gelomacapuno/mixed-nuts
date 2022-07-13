@@ -17,8 +17,8 @@ public class NurseMenu implements ActionListener {
     private static MyButton searchButton;
     private static MyButton homeButton;
     public static JFrame frame = new JFrame();
-    public final CardLayout cl = new CardLayout(); //for setLayout();
-    public final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
+    public static final CardLayout cl = new CardLayout(); //for setLayout();
+    public static final MyPanel cardPanel = new MyPanel(new Color(0x283469),286,0,994,720);
     public NurseMenu(){
         setNavPanel();
         setDisplayPanel();
@@ -133,6 +133,7 @@ public class NurseMenu implements ActionListener {
     }
 
     public static void changePass(){
+        cl.show(cardPanel,"Change");
         hideAllDisplayPanel();
         setHoverButton(addButton);
         setHoverButton(homeButton);

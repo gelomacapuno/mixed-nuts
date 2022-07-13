@@ -40,11 +40,11 @@ public class DoctorSearch extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (userMenu.getSelectedItem().toString().equals("Change Password")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.changePass();
+                    DoctorMenu.changePass();
                 }
                 if (userMenu.getSelectedItem().toString().equals("Logout")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
+                    DoctorMenu.close();
                 }
             }
         });
