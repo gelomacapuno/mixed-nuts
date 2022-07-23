@@ -10,6 +10,8 @@ public class MyButton extends JButton {
         setBounds(x,y,width,height);
         setFont(font);
         setContentAreaFilled(false);
+        setOpaque(false);
+        setBorderPainted(false);
         setBackground(color);
         setFocusPainted(false);
         setForeground(Color.white);

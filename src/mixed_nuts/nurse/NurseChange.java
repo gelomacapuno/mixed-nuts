@@ -1,16 +1,23 @@
 package mixed_nuts.nurse;
 
-import mixed_nuts.components.ImageLabel;
-import mixed_nuts.components.MyLabel;
-import mixed_nuts.components.MyPanel;
-import mixed_nuts.components.MyTextField;
+import mixed_nuts.app.LoginForm;
+import mixed_nuts.components.*;
+import mixed_nuts.util.DatabaseConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-public class NurseChange extends JPanel {
+import static mixed_nuts.nurse.NurseHome.getNurseName;
+
+public class NurseChange extends JPanel implements ActionListener{
+    private MyButton confirmButton;
+    private String curPassword,newPassword,verifyPassword,check;
+    private JPasswordField currentField, newField,verifyField;
     private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
     private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
     public MyPanel panel;
@@ -25,7 +32,8 @@ public class NurseChange extends JPanel {
 
         add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
         panel.setLayout(null);
-        String[] user = {"Welcome back! <user>", "Change Password", "Logout"};
+        String respect = "Welcome! Nurse " + getNurseName();
+        String[] user = {respect, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -36,18 +44,13 @@ public class NurseChange extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (userMenu.getSelectedItem().toString().equals("Change Password")){
                     userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
+                    NurseMenu.changePass();
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")){
-                    userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
-                }
+
             }
         });
 
         add(new ImageLabel(new ImageIcon("element_opacity.png"),246,25,817,660));
-
-
     }
     private void changePassForm(){
         panel.add(new MyLabel("Change User Password",Color.black,
@@ -56,11 +59,91 @@ public class NurseChange extends JPanel {
         panel.add(new MyLabel("New Password:",Color.black,benteSingko,191,215,284,29));
         panel.add(new MyLabel("Verify New Password:",Color.black,benteSingko,191,301,284,29));
 
-        MyTextField currentField = new MyTextField(null,504, 133, 193, 28,bente);
+        currentField = new JPasswordField();
+        currentField.setEchoChar('*');
+        currentField.setBounds(504, 133, 193, 28);
+        currentField.setFont(bente);
         panel.add(currentField);
-        MyTextField newField = new MyTextField(null,504, 193, 193, 28,bente);
+        newField = new JPasswordField();
+        newField.setBounds(504, 193, 193, 28);
+        newField.setEchoChar('*');
+        newField.setFont(bente);
         panel.add(newField);
-        MyTextField verifyField = new MyTextField(null,504, 301, 193, 28,bente);
+        verifyField = new JPasswordField();
+        verifyField.setEchoChar('*');
+        verifyField.setBounds(504, 301, 193, 28);
+        verifyField.setFont(bente);
         panel.add(verifyField);
+
+        confirmButton = new MyButton(new ImageIcon("confirm_logo.png"),400,500,161,41,
+                null,new Color(0x828da6));
+        confirmButton.setOpaque(true);
+        confirmButton.addActionListener(this);
+        panel.add(confirmButton);
+    }
+
+    private void transferVal(){
+        curPassword = currentField.getText();
+        newPassword = newField.getText();
+        verifyPassword = verifyField.getText();
+    }
+    public void verifyCurEmp(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String ver = "SELECT password FROM accountst WHERE accountID = '"+ LoginForm.id+"'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet rs = statement.executeQuery(ver);
+            if(rs.next()) {
+                check = rs.getString("password");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    private void updatePassword(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verify = "UPDATE accountst SET password ='"+newPassword+"' WHERE accountID='"+LoginForm.ida+"'";
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(verify);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    private void clearField() {
+        currentField.setText("");
+        newField.setText("");
+        verifyField.setText("");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        transferVal();
+        verifyCurEmp();
+        if(curPassword.equals(check)){
+            if(newPassword.equals(verifyPassword)){
+                updatePassword();
+                JOptionPane.showMessageDialog(null,"Password has been changed.");
+                clearField();
+            }else{
+                JOptionPane.showMessageDialog(null,"New and Verify Password mismatched");
+                clearField();
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(null,"Current password is incorrect.");
+            clearField();
+        }
+
     }
 }

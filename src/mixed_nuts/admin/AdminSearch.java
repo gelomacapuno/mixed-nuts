@@ -1,31 +1,39 @@
 package mixed_nuts.admin;
 
-import mixed_nuts.components.ImageLabel;
-import mixed_nuts.components.MyLabel;
-import mixed_nuts.components.MyPanel;
-import mixed_nuts.components.MyTextField;
-import mixed_nuts.nurse.NurseMenu;
+import mixed_nuts.admin.user.UserDetails;
+import mixed_nuts.components.*;
+import mixed_nuts.util.DatabaseConnection;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.*;
 
-public class AdminSearch extends JPanel {
+public class AdminSearch extends JPanel implements ActionListener{
+    public static String value, position;
+    private MyButton view;
+    private JTable table;
+    public static DefaultTableModel model;
     private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
     private MyPanel panel;
     public AdminSearch(){
         searchField();
-        makeTable();
         setLayout(null);
         setBGDesign();
     }
 
     private void setBGDesign(){
-        setBackground(new Color(0x142959));
+        setBackground(new Color(0xFFAE52));
 
         add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
         String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
@@ -48,7 +56,7 @@ public class AdminSearch extends JPanel {
             }
         });
 
-        add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
+        add(new ImageLabel(new ImageIcon("admin_element.png"),248,25,817,660));
 
     }
 
@@ -61,18 +69,49 @@ public class AdminSearch extends JPanel {
         MyTextField searchField = new MyTextField(null,120,22,531,40,bente);
         panel.add(searchField);
 
-        String[] sortBy = {"Name","Date"};
+
+        String[] sortBy = {"All","Cardiology","Gastroenterology","Gynecology","Nephrology",
+        "Neurology","Oncology","Ophthalmology","Orthopaedics","Otolaryngology","Urology"};
         JComboBox<String> sort_by = new JComboBox<>(sortBy);
         sort_by.setBounds(800,22, 100,40);
         sort_by.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        sort_by.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] t = {"",""};
+                t[0] = searchField.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                getTableData(t);
+            }
+        });
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                getTableData(new String[]{searchField.getText(),sort_by.getSelectedItem().toString()});
+            }
+        });
         panel.add(sort_by);
+        makeTable();
+        getTableData(new String[]{"","All"});
     }
 
     private void makeTable(){
         //table variable naming and addColumn
-        JTable table = new JTable(new DefaultTableModel());
+        table = new JTable(new DefaultTableModel());
+        table.clearSelection();
         JScrollPane pane = new JScrollPane(table);
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model = (DefaultTableModel) table.getModel();
+        model.addColumn("id");
         model.addColumn("Name");
         model.addColumn("Employee Type");
         model.addColumn("Department");
@@ -97,28 +136,99 @@ public class AdminSearch extends JPanel {
         table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
         table.getTableHeader().setForeground(Color.white);
-        table.getColumnModel().getColumn(0).setPreferredWidth(250);
+        table.getColumnModel().getColumn(1).setPreferredWidth(240);
+        table.getColumnModel().getColumn(2).setPreferredWidth(50);
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        table.getColumn("id").setCellRenderer(dtcr);
         table.getColumn("Name").setCellRenderer(dtcr);
         table.getColumn("Employee Type").setCellRenderer(dtcr);
         table.getColumn("Department").setCellRenderer(dtcr);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         pane.setVisible(true);
-        pane.setBounds(24,105, 921,440);
+        pane.setBounds(24,105, 921,400);
         panel.add(pane);
 
+        view = new MyButton(new ImageIcon("view.png"),423,550,123,41,null,new Color(0xfde7cd));
+        panel.add(view);
+        view.setOpaque(true);
+        view.setEnabled(false);
+        view.addActionListener(this);
 
-        //sample data
-        model.addRow(new Object[]{"Angelo Macapuno","Doctor","Cardiology"});
-        model.addRow(new Object[]{"Anne Marie Therese Alejandro","Doctor","Oncology"});
-        model.addRow(new Object[]{"Kenneth Matthew Aboleda","Nurse","Urology"});
-        model.addRow(new Object[]{"Hazel Luna Brizo","Nurse","Nephrology"});
-        model.addRow(new Object[]{"John Leonardo Larraga","Nurse","Orthopaedics"});
-        model.addRow(new Object[]{"Charles Joseph Tolentino","Doctor","Gynecology"});
-        model.addRow(new Object[]{"Janiza Kane Cortez","Doctor","Neurology"});
-        model.addRow(new Object[]{"Alexander James Cebreiros","Nurse","Oncology"});
-        model.addRow(new Object[]{"Jhaymie Ross Dagohoy","Nurse","Cardiology"});
-        model.addRow(new Object[]{"Janel Aguilar","Doctor","Nephrology"});
+        if(table.getSelectionModel().isSelectionEmpty()){
+            view.setEnabled(false);
+        }
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                table.clearSelection();
+                view.setEnabled(false);
+
+            }
+        });
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                view.setEnabled(true);
+
+            }
+
+    });}
+    public static void getTableData(String[] text){
+        String userinfo;
+        model.setRowCount(0);
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+            if(text[1].equals("All")){
+                if(text[0].equals(""))
+                    userinfo = "SELECT * FROM accountst a JOIN nurse_t n ON a.accountID = n.accountID\n" +
+                            "UNION \n" +
+                            "SELECT * FROM accountst a JOIN doctor_t d ON a.accountID = d.accountID";
+                else
+                    userinfo = "SELECT * FROM accountst a JOIN nurse_t n ON a.accountID = n.accountID WHERE n.lastName LIKE '"
+                                + text[0] + "%' UNION " + "SELECT * FROM accountst a JOIN doctor_t d ON a.accountID = " +
+                            "d.accountID WHERE d.lastName LIKE '" + text[0] +"%';";
+            }else{
+                if(text[0].equals(""))
+                    userinfo ="SELECT * FROM accountst a JOIN nurse_t n ON a.accountID = n.accountID " +
+                            "WHERE  a.department = '"+text[1]+"' UNION SELECT * FROM accountst a " +
+                            "JOIN doctor_t d ON a.accountID = d.accountID " +
+                            "WHERE  a.department = '"+text[1]+"';";
+                else
+                    userinfo = "SELECT * FROM accountst a JOIN nurse_t n ON a.accountID = n.accountID " +
+                            "WHERE n.lastName LIKE '"+text[0]+"' AND a.department = '"+text[1]+"' UNION SELECT * FROM accountst a " +
+                            "JOIN doctor_t d ON a.accountID = d.accountID " +
+                            "WHERE d.lastName LIKE '"+text[0]+"%' AND a.department = '"+text[1]+"';";
+            }
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(userinfo);
+            while(queryResult.next()){
+                int id = queryResult.getInt("accountID");
+                String firstname = queryResult.getString("givenName");
+                String middlename = queryResult.getString("middleName");
+                String surname = queryResult.getString("lastName");
+                String name = surname + ", " + firstname + " " + middlename;
+                String type = queryResult.getString("empType");
+                String dept = queryResult.getString("department");
+
+                model.addRow(new Object[]{id,name,type,dept});
+            }
+        }catch (Exception e){
+            //pass
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == view){
+            int row = table.getSelectedRow();
+            value = table.getModel().getValueAt(row,0).toString();
+            position = table.getModel().getValueAt(row,2).toString();
+            new UserDetails();
+        }
     }
 }

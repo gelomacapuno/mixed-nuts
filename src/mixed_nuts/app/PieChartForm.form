@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="mixed_nuts.app.PieChartForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="10" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="703" height="517"/>
+    </constraints>
+    <properties>
+      <background color="-14933435"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <hspacer id="6a115">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="4" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <scrollpane id="77bb3" binding="ff">
+        <constraints>
+          <grid row="5" column="1" row-span="2" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-14933435"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="ab70c" binding="graphPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <background color="-14933435"/>
+              <foreground color="-16777216"/>
+            </properties>
+            <border type="none">
+              <title-color color="-1513240"/>
+            </border>
+            <children/>
+          </grid>
+        </children>
+      </scrollpane>
+      <vspacer id="1f3e1">
+        <constraints>
+          <grid row="4" column="0" row-span="5" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="40" height="14"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <vspacer id="daabd">
+        <constraints>
+          <grid row="4" column="5" row-span="5" col-span="1" vsize-policy="6" hsize-policy="1" anchor="4" fill="2" indent="0" use-parent-layout="false">
+            <preferred-size width="40" height="14"/>
+          </grid>
+        </constraints>
+      </vspacer>
+      <hspacer id="94b74">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="3a56a">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="4b1be" class="javax.swing.JLabel" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <enabled value="true"/>
+          <font name="Helvetica" size="36" style="0"/>
+          <foreground color="-14142359"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="higher"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <component id="5f677" class="javax.swing.JLabel" default-binding="true">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Helvetica" size="36" style="0"/>
+          <foreground color="-1513240"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <text value="No. of Patients by Department"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <component id="873a2" class="javax.swing.JLabel" default-binding="true">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Helvetica" size="36" style="0"/>
+          <foreground color="-14142359"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <opaque value="false"/>
+          <text value="LOWER"/>
+          <verifyInputWhenFocusTarget value="false"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <component id="8427f" class="javax.swing.JButton" binding="button1" default-binding="true">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <defaultCapable value="false"/>
+          <font name="Helvetica" size="26" style="0"/>
+          <foreground color="-16777216"/>
+          <label value="CLOSE"/>
+          <text value="CLOSE"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <hspacer id="b0564">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="85b82">
+        <constraints>
+          <grid row="8" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="16526" class="javax.swing.JLabel" default-binding="true">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Helvetica" size="36" style="0"/>
+          <foreground color="-14142359"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <opaque value="false"/>
+          <text value="LOWER"/>
+          <verifyInputWhenFocusTarget value="false"/>
+          <visible value="true"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+  <inspectionSuppressions>
+    <suppress inspection="I18nForm" id="4b1be"/>
+  </inspectionSuppressions>
+</form>

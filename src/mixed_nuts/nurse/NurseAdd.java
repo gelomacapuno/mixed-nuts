@@ -1,19 +1,34 @@
 package mixed_nuts.nurse;
 
 import com.toedter.calendar.JDateChooser;
+import mixed_nuts.app.LoginForm;
 import mixed_nuts.components.*;
-import mixed_nuts.nurse.NurseMenu;
+import mixed_nuts.util.DatabaseConnection;
 
+import static mixed_nuts.nurse.NurseHome.getNurseName;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
 
 
 public class NurseAdd extends JPanel implements ActionListener {
+    private MyTextField surnameField, firstnameField, middlenameField, weightField,heightField,
+                        pulseField,bloodPressureField1,bloodPressureField2,bodyTempField;
+    private JRadioButton maleRadioButton,femaleRadioButton;
+    private ButtonGroup Gender;
+    private JTextArea addressField;
+    private JDateChooser birthField;
+    private String gender;
+    JComboBox<String> bloodtypeField, levelofpainField;
     private MyPanel addFormPanel;
     public MyButton logout, confirm;
-    public JLabel heading;
 
     public NurseAdd(){
         addFields();
@@ -55,66 +70,59 @@ public class NurseAdd extends JPanel implements ActionListener {
         addFormPanel.add(new MyLabel("<html>Level of<br>Pain:</html>",Color.black,bente,22,463, 109,58));
 
 
-        MyTextField surnameField = new MyTextField(null,136,22,200,28,bente);
-        addFormPanel.add(surnameField);
 
-        MyTextField firstnameField = new MyTextField(null,368, 22, 200, 28,bente);
-        addFormPanel.add(firstnameField);
+        addFormPanel.add(surnameField = new MyTextField(null,136,22,200,28,bente));
+        addFormPanel.add(firstnameField = new MyTextField(null,368, 22, 200, 28,bente));
+        addFormPanel.add(middlenameField = new MyTextField(null,593, 22, 200, 28,bente));
 
-        MyTextField middlenameField = new MyTextField(null,593, 22, 200, 28,bente);
-        addFormPanel.add(middlenameField);
-
-        JRadioButton maleRadioButton = new JRadioButton();
+        maleRadioButton = new JRadioButton();
         maleRadioButton.setBounds(143,92,25,25);
         maleRadioButton.setBackground(new Color(0x828da6));
         addFormPanel.add(maleRadioButton);
 
-        JRadioButton femaleRadioButton = new JRadioButton();
+        femaleRadioButton = new JRadioButton();
         femaleRadioButton.setBounds(290,92,25,25);
         femaleRadioButton.setBackground(new Color(0x828da6));
         addFormPanel.add(femaleRadioButton);
-        ButtonGroup Gender = new ButtonGroup();
+
+        Gender = new ButtonGroup();
         Gender.add(maleRadioButton);
         Gender.add(femaleRadioButton);
 
         //ADDRESS FORM
-        JTextArea addressField = new JTextArea();
+        addressField = new JTextArea();
         addressField.setEditable(true);
         addressField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addressField.setBounds(136,135, 772,59);
         addFormPanel.add(addressField);
 
 
-        JDateChooser birthField = new JDateChooser();
+        birthField = new JDateChooser();
         birthField.setBounds(136, 213, 200, 28);
         birthField.setBorder(BorderFactory.createEmptyBorder());
         birthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         birthField.setDateFormatString("dd/MM/yyyy");
         addFormPanel.add(birthField);
-        MyTextField weightField = new MyTextField(null,136, 281, 100, 28,bente);
+        weightField = new MyTextField(null,136, 281, 100, 28,bente);
         addFormPanel.add(weightField);
-        MyTextField heightField = new MyTextField(null,513, 280, 100, 28,bente);
+        heightField = new MyTextField(null,513, 280, 100, 28,bente);
         addFormPanel.add(heightField);
-        MyTextField pulseField = new MyTextField(null,513, 417, 100, 28,bente);
+        pulseField = new MyTextField(null,513, 417, 100, 28,bente);
         addFormPanel.add(pulseField);
 
 
 
 
-        JComboBox<String> bloodtypeField = new JComboBox<>(bloodTypes);
+        bloodtypeField = new JComboBox<>(bloodTypes);
         bloodtypeField.setBounds(136,349,100,28);
         bloodtypeField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addFormPanel.add(bloodtypeField);
-        MyTextField bloodPressureField1 = new MyTextField(null,513,349,100,28,bente);
-        addFormPanel.add(bloodPressureField1);
-        MyTextField bloodPressureField2 = new MyTextField(null,647,349,100,28,bente);
-        addFormPanel.add(bloodPressureField2);
-        MyTextField bodyTempField = new MyTextField(null,136,417,100,28,bente);
-        bodyTempField.setBorder(BorderFactory.createEmptyBorder());
-        addFormPanel.add(bodyTempField);
+        addFormPanel.add(bloodPressureField1 = new MyTextField(null,513,349,100,28,bente));
+        addFormPanel.add(bloodPressureField2 = new MyTextField(null,647,349,100,28,bente));
+        addFormPanel.add(bodyTempField = new MyTextField(null,136,417,100,28,bente));
 
 
-        JComboBox<String> levelofpainField = new JComboBox<>(level);
+        levelofpainField = new JComboBox<>(level);
         levelofpainField.setBounds(136,478,100,28);
         levelofpainField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addFormPanel.add(levelofpainField);
@@ -127,7 +135,8 @@ public class NurseAdd extends JPanel implements ActionListener {
     }
 
     private void setBGDesign(){
-        String[] user = {"Welcome back! <user>", "Change Password", "Logout"};
+        String respect = "Welcome! Nurse " + getNurseName();
+        String[] user = {respect, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -140,23 +149,120 @@ public class NurseAdd extends JPanel implements ActionListener {
                     userMenu.setSelectedIndex(0);
                     NurseMenu.changePass();
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")){
-                    userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
-                }
             }
         });
         add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
 
     }
 
+    private void inputPatient(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String surname = surnameField.getText();
+        String firstname = firstnameField.getText();
+        String middlename = middlenameField.getText();
+        String dateofBirth = ((JTextField)birthField.getDateEditor().getUiComponent()).getText();
+        String[] dob = dateofBirth.split("/");
+        int day = Integer.parseInt(dob[0]);
+        int month = Integer.parseInt(dob[1]);
+        int year = Integer.parseInt(dob[2]);
+        LocalDate selectedDate = LocalDate.of(year,month,day);
+        LocalDate currentDate = LocalDate.now();
+        int result = Period.between(selectedDate,currentDate).getYears();
+        String age = Integer.toString(result);
+        String weight = weightField.getText();
+        String height = heightField.getText();
+        String bloodpressure = bloodPressureField1.getText() + "/" + bloodPressureField2.getText();
+        String bodyTemp = bodyTempField.getText();
+        String painlevel = (String)levelofpainField.getSelectedItem();
+        String pulse = pulseField.getText();
+
+        if(maleRadioButton.isSelected()){
+            gender ="Male";
+        }
+        if(femaleRadioButton.isSelected()){
+            gender = "Female";
+        }
+        String bloodtype = (String) bloodtypeField.getSelectedItem();
+        String address = addressField.getText();
+
+        String insertValue = "INSERT INTO patientst VALUES(idpatient,'"+surname+"','"+firstname+"','"+middlename+"'," +
+                "'"+gender+"'," + "'"+address+"','"+age+"','"+month+"','"+day+"','"+year+"','"+weight+"','"+height+
+                "','"+bloodtype+"','"+bloodpressure+"','"+bodyTemp+"','"+painlevel+"','"+pulse+"'," +
+                "'"+ LoginForm.dept+"',default,null,null,null,null,'"+getNurseID()+"');";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertValue);
+        }catch (Exception exc){
+            exc.getCause();
+            exc.printStackTrace();
+        }
+    }
+
+    private String getNurseID() {
+        String nurseID = null;
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        String Identify = "SELECT NurseID FROM nurse_t WHERE accountID = '"+ LoginForm.ida +"';";
+
+        try{
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(Identify);
+            if(rs.next()) {
+                nurseID = rs.getString("NurseID");
+            }
+        }catch(Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+
+        return nurseID;
+
+    }
+    private void clearinput(){
+        birthField.setDate(null);
+        Gender.clearSelection();
+        surnameField.setText("");
+        firstnameField.setText("");
+        middlenameField.setText("");
+        weightField.setText("");
+        heightField.setText("");
+        bloodPressureField1.setText("");
+        bloodPressureField2.setText("");
+        bodyTempField.setText("");
+        levelofpainField.setSelectedIndex(0);
+        addressField.setText("");
+        pulseField.setText("");
+        bloodtypeField.setSelectedIndex(0);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == logout)
-            NurseMenu.close();
 
         if(e.getSource() == confirm){
-            JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
-        }
+            if(surnameField.getText().equals("")||
+                    firstnameField.getText().equals("")||
+                    middlenameField.getText().equals("")||
+                    weightField.getText().equals("")||
+                    heightField.getText().equals("")||
+                    bloodPressureField1.getText().equals("")||
+                    bloodPressureField2.getText().equals("")||
+                    bodyTempField.getText().equals("")||
+                    levelofpainField.getSelectedIndex() ==0||
+                    addressField.getText().equals("")||
+                    pulseField.getText().equals("")||
+                    bloodtypeField.getSelectedIndex() == 0 ||
+                    Gender.getSelection()==null ||
+                    birthField.getDate()==null){
+                JOptionPane.showMessageDialog(null, "Please complete all required fields!");
+            }else{
+                inputPatient();
+                JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
+                clearinput();
+                NurseSearch.gettableData(new String[] {"","Name"});
+            }        }
     }
 }

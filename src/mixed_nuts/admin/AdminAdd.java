@@ -1,15 +1,24 @@
 package mixed_nuts.admin;
 
 import mixed_nuts.components.*;
+import mixed_nuts.util.DatabaseConnection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-public class AdminAdd extends JPanel implements MouseListener, ActionListener {
-    private MyTextField codeField;
+public class AdminAdd extends JPanel implements ActionListener {
+    private String surname,firstname,middlename,department,empID,verifiedPass,position;
+    private int id;
     private JPasswordField passField, verifyField;
     private JComboBox<String> dept;
+    private ButtonGroup roles;
+    private JRadioButton doctorRadio, nurseRadio;
+    private MyButton confirmButton;
+    private MyTextField surnameField,givenField,middleField,empIDField;
     private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
     private final Font bente = new Font("Helvetica",Font.PLAIN,20);
     public MyPanel panel;
@@ -20,7 +29,7 @@ public class AdminAdd extends JPanel implements MouseListener, ActionListener {
     }
 
     private void setBGDesign() {
-        setBackground(new Color(0x142959));
+        setBackground(new Color(0xFFAE52));
 
         add(panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630));
         panel.setLayout(null);
@@ -42,34 +51,34 @@ public class AdminAdd extends JPanel implements MouseListener, ActionListener {
                 }
             }
         });
-        add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
+        add(new ImageLabel(new ImageIcon("admin_element.png"),380,25,817,660));
     }
     public void addUserForm() {
         //Labels
-        panel.add(new MyLabel("Name:",Color.white,benteSingko,64,33,151,29));
-        panel.add(new MyLabel("Surname",Color.white,benteSingko,277, 68, 110, 29));
-        panel.add(new MyLabel("Given Name",Color.white,benteSingko,488, 68, 150, 29));
-        panel.add(new MyLabel("Middle Name",Color.white,benteSingko,710, 68, 160, 29));
-        panel.add(new MyLabel("Department",Color.white,benteSingko,64, 100, 141, 29));
-        panel.add(new MyLabel("Role:",Color.white,benteSingko,64, 144, 138, 29));
-        panel.add(new MyLabel("Doctor",Color.white,benteSingko,262, 144, 138, 29));
-        panel.add(new MyLabel("Nurse",Color.white,benteSingko,407, 144, 138, 29));
-        panel.add(new MyLabel("<html>Department<br>Code:</html>",Color.white,benteSingko,64, 188, 138, 58));
-        panel.add(new MyLabel("EmployeeID",Color.white,benteSingko,64, 261, 138, 58));
-        panel.add(new MyLabel("Password",Color.white,benteSingko,64, 361, 138, 58));
-        panel.add(new MyLabel("<html>Verify<br>Password:</html>",Color.white,benteSingko,64, 434, 155, 62));
+        panel.add(new MyLabel("Name:",Color.black,benteSingko,64,33,151,29));
+        panel.add(new MyLabel("Surname",Color.black,benteSingko,277, 68, 110, 29));
+        panel.add(new MyLabel("Given Name",Color.black,benteSingko,488, 68, 150, 29));
+        panel.add(new MyLabel("Middle Name",Color.black,benteSingko,710, 68, 160, 29));
+        panel.add(new MyLabel("Department",Color.black,benteSingko,64, 100, 141, 29));
+        panel.add(new MyLabel("Role:",Color.black,benteSingko,64, 144, 138, 29));
+        panel.add(new MyLabel("Doctor",Color.black,benteSingko,262, 144, 138, 29));
+        panel.add(new MyLabel("Nurse",Color.black,benteSingko,407, 144, 138, 29));
+        //panel.add(new MyLabel("<html>Department<br>Code:</html>",Color.black,benteSingko,64, 188, 138, 58));
+        panel.add(new MyLabel("EmployeeID",Color.black,benteSingko,64, 261, 138, 58));
+        panel.add(new MyLabel("Password",Color.black,benteSingko,64, 361, 138, 58));
+        panel.add(new MyLabel("<html>Verify<br>Password:</html>",Color.black,benteSingko,64, 434, 155, 62));
 
 
 
-        MyTextField surnameField = new MyTextField(null,229, 32, 200, 28,bente);
+        surnameField = new MyTextField(null,229, 32, 200, 28,bente);
         panel.add(surnameField);
-        MyTextField givenField = new MyTextField(null,455, 32, 200, 28,bente);
+        givenField = new MyTextField(null,455, 32, 200, 28,bente);
         panel.add(givenField);
-        MyTextField middleField = new MyTextField(null,680, 32, 200, 28,bente);
+        middleField = new MyTextField(null,680, 32, 200, 28,bente);
         panel.add(middleField);
-        codeField = new MyTextField(null,229,203,230,28,bente);
-        panel.add(codeField);
-        MyTextField empIDField = new MyTextField(null,229,276,230,28,bente);
+        /*codeField = new MyTextField(null,229,203,230,28,bente);
+        panel.add(codeField);*/
+        empIDField = new MyTextField(null,229,276,230,28,bente);
         panel.add(empIDField);
 
 
@@ -100,94 +109,145 @@ public class AdminAdd extends JPanel implements MouseListener, ActionListener {
         dept.setBounds(229, 100, 229, 28);
         dept.setFont(bente);
         panel.add(dept);
-        dept.addMouseListener(this);
 
 
 
 
-        JRadioButton doctorRadio = new JRadioButton();
+        doctorRadio = new JRadioButton();
         doctorRadio.setBounds(229, 223, 25, 25);
-        doctorRadio.setForeground(Color.white);
-        doctorRadio.setBackground(new Color(0,0,0,0));
+        doctorRadio.setOpaque(false);
+        doctorRadio.setBorderPainted(false);
+        doctorRadio.setContentAreaFilled(false);
         add(doctorRadio);
 
-        JRadioButton nurseRadio = new JRadioButton();
+        nurseRadio = new JRadioButton();
         nurseRadio.setBounds(374, 223, 25, 25);
-        doctorRadio.setForeground(Color.white);
-        nurseRadio.setBackground(new Color(0,0,0,0));
+        nurseRadio.setOpaque(false);
+        nurseRadio.setContentAreaFilled(false);
+        nurseRadio.setBorderPainted(false);
         add(nurseRadio);
 
         //RADIO BUTTON GROUP
-        ButtonGroup Roles = new ButtonGroup();
-        Roles.add(doctorRadio);
-        Roles.add(nurseRadio);
+        roles = new ButtonGroup();
+        roles.add(doctorRadio);
+        roles.add(nurseRadio);
 
         //CODE FORM
-        MyButton confirmButton = new MyButton(new ImageIcon("confirm_logo.png"),734, 451, 161, 41,null,null);
+        confirmButton = new MyButton(new ImageIcon("confirm_logo.png"),400, 550, 161, 41,null,new Color(0xfed3a2));
+        confirmButton.setOpaque(true);
         panel.add(confirmButton);
         confirmButton.addActionListener(this);
     }
 
-    public void Test(){
-        if (dept.getSelectedItem().equals("Cardiology")){
-            codeField.setText("Cardiology123");
-        }
-        else if (dept.getSelectedItem().equals("Gastroenterology")){
-            codeField.setText("Gastroenterology123");
-        }
-        else if (dept.getSelectedItem().equals("Gynecology")){
-            codeField.setText("Gynecology123");
-        }
-        else if (dept.getSelectedItem().equals("Nephrology")){
-            codeField.setText("Nephrology123");
-        }
-        else if (dept.getSelectedItem().equals("Neurology")){
-            codeField.setText("Neurology123");
-        }
-        else if (dept.getSelectedItem().equals("Oncology")){
-            codeField.setText("Oncology123");
-        }
-        else if (dept.getSelectedItem().equals("Ophthalmology")){
-            codeField.setText("Ophthalmology123");
-        }
-        else if (dept.getSelectedItem().equals("Orthopaedics")){
-            codeField.setText("Orthopaedics123");
-        }
-        else if (dept.getSelectedItem().equals("Otolaryngology")){
-            codeField.setText("Otolaryngology123");
-        }
-        else if (dept.getSelectedItem().equals("Urology")){
-            codeField.setText("Urology123");
+    private void inputDoctorNurse(String input){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+        try{
+            Statement st = connect.createStatement();
+            st.executeUpdate(input);
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Test();
+    private void inputUser(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String insertFields = "INSERT INTO accountst(empType,username,password,department) VALUES('";
+        String insertValue = position +"','"+ empID + "','" + verifiedPass + "','"+ department + "')";
+        String insertUser = insertFields + insertValue;
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertUser);
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT last_insert_id() as 'last'");
+            if(rs.next()){
+                id = rs.getInt("last");
+            }
+        }catch (Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+        if(position.equals("D")){
+            insertFields = "INSERT INTO doctor_t(lastname,givenname,middlename,accountID) VALUES('";
+            insertValue = surname +"','"+ firstname + "','" + middlename + "','"+ id + "')";
+            inputDoctorNurse(insertFields+insertValue);
+        }
+        if(position.equals("N")){
+            insertFields = "INSERT INTO nurse_t(lastname,givenname,middlename,accountID) VALUES('";
+            insertValue = surname +"','"+ firstname + "','" + middlename + "','"+ id + "')";
+            inputDoctorNurse(insertFields+insertValue);
+        }
+
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        Test();
+    private void transferData(){
+        surname = surnameField.getText();
+        firstname = givenField.getText();
+        middlename = middleField.getText();
+        department = (String)dept.getSelectedItem();
+        empID = empIDField.getText();
+        verifiedPass = verifyField.getText();
+        if(doctorRadio.isSelected()){
+            position = "D";
+        }
+        if(nurseRadio.isSelected()){
+            position = "N";
+        }
+
+
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        Test();
-    }
+    private void getEmpID(){
+        transferData();
+        String checker = null;
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+        String verify = empIDField.getText();
+        String identify = "SELECT username FROM accountst WHERE username='" + verify + "'";
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        Test();
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        Test();
+        try{
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(identify);
+            if(rs.next()){
+                checker = rs.getString("username");
+            }
+            if(verify.equals(checker)){
+                JOptionPane.showMessageDialog(null,"EmpID is already in use please change.");
+                empIDField.setText("");
+                passField.setText("");
+                verifyField.setText("");
+            }else {
+                inputUser();
+                AdminSearch.getTableData(new String[]{"","All"});
+                JOptionPane.showMessageDialog(null,"User Created Successfully.");
+            }
+        }
+        catch (Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(surnameField.getText().equals("") || middleField.getText().equals("") ||
+            givenField.getText().equals("") || dept.getSelectedIndex() == 0 ||
+            roles.getSelection()== null || empIDField.getText().equals("") ||
+            passField.getText().equals("")||verifyField.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please complete all required fields.");
+        }else{
+            if(!passField.getText().equals(verifyField.getText())){
+                JOptionPane.showMessageDialog(null,"Password and Verify Password is not the same.");
+            }else{getEmpID();}
+        }
 
     }
 }

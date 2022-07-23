@@ -1,20 +1,40 @@
 package mixed_nuts.nurse;
-
 import mixed_nuts.components.*;
+import mixed_nuts.nurse.patients.PatientInformation;
+import mixed_nuts.util.DatabaseConnection;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import static mixed_nuts.nurse.NurseHome.getNurseName;
 
 public class NurseSearch extends JPanel implements ActionListener {
+    public static String value,date;
+    private MyTextField searchField;
+    private JComboBox<String> sort_by;
+    private MyButton view;
+    private JTable table;
+    private JScrollPane pane;
+    public static DefaultTableModel model;
     private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
     private MyPanel panel;
     public NurseSearch(){
         searchField();
-        makeTable();
+
         setLayout(null);
         setBackground(new Color(0x142959));
         setBGUI();
@@ -23,8 +43,8 @@ public class NurseSearch extends JPanel implements ActionListener {
     private void setBGUI(){
         add(new MyLabel("",Color.white,new Font("Helvetica", Font.PLAIN, 40),
                 17,20,894,68));
-
-        String[] user = {"Welcome back! <user>", "Change Password", "Logout"};
+        String greet = "Welcome! Nurse " + getNurseName();
+        String[] user = {greet, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -37,10 +57,6 @@ public class NurseSearch extends JPanel implements ActionListener {
                     userMenu.setSelectedIndex(0);
                     NurseMenu.changePass();
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")){
-                    userMenu.setSelectedIndex(0);
-                    NurseMenu.close();
-                }
             }
         });
         add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
@@ -52,21 +68,56 @@ public class NurseSearch extends JPanel implements ActionListener {
         panel.add(new MyLabel("Search:", Color.black,bente,25,22,78,33));
         panel.add(new MyLabel("Search By:", Color.black,bente,680,22,109,33));
 
-        MyTextField searchField = new MyTextField(null,120,22,531,40,bente);
+        searchField = new MyTextField(null,120,22,531,40,bente);
         panel.add(searchField);
-
         String[] sortBy = {"Name","Date"};
-        JComboBox<String> sort_by = new JComboBox<>(sortBy);
+        sort_by = new JComboBox<>(sortBy);
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String[] t = {"",""};
+                t[0] = searchField.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                gettableData(t);
+            }
+        });
+
+
+
         sort_by.setBounds(800,22, 100,40);
+        sort_by.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] t = {"",""};
+                t[0] = searchField.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                gettableData(t);
+            }
+        });
         sort_by.setFont(new Font("Helvetica", Font.PLAIN, 20));
         panel.add(sort_by);
+
+
+
+        makeTable();
+        gettableData(new String[]{"","Name"});
     }
 
     private void makeTable(){
         //table variable naming and addColumn
-        JTable table = new JTable(new DefaultTableModel());
-        JScrollPane pane = new JScrollPane(table);
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        table = new JTable(new DefaultTableModel());
+        pane = new JScrollPane(table);
+        model = (DefaultTableModel) table.getModel();
         model.addColumn("Patient No.");
         model.addColumn("Name");
         model.addColumn("Date of Checkup");
@@ -103,43 +154,79 @@ public class NurseSearch extends JPanel implements ActionListener {
         pane.setBounds(24,105, 921,440);
         panel.add(pane);
 
+        view = new MyButton(new ImageIcon("view.png"),722-286,656-100,
+                123,41,null,new Color(0x888ca4));
+        view.setOpaque(true);
+        view.addActionListener(this);
+        panel.add(view);
 
-        //sample data
-        model.addRow(new Object[]{1,"Angelo Macapuno","2020-12-12"});
-        model.addRow(new Object[]{2,"Anne Marie Therese Alejandro","2020-12-13"});
-        model.addRow(new Object[]{3,"Kenneth Matthew Aboleda","2020-12-14"});
-        model.addRow(new Object[]{4,"Hazel Luna Brizo","2020-12-15"});
-        model.addRow(new Object[]{5,"John Leonardo Larraga","2020-12-15"});
-        model.addRow(new Object[]{6,"Charles Joseph Tolentino","2020-12-15"});
-        model.addRow(new Object[]{7,"Janiza Kane Cortez","2020-12-16"});
-        model.addRow(new Object[]{8,"Alexander James Cebreiros","2020-12-18"});
-        model.addRow(new Object[]{9,"Jhaymie Ross Dagohoy","2021-01-2"});
-        model.addRow(new Object[]{10,"Janel Aguilar","2021-01-2"});
+        if(table.getSelectionModel().isSelectionEmpty()){
+            view.setEnabled(false);
+        }
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                table.clearSelection();
+                view.setEnabled(false);
+            }
+        });
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                view.setEnabled(true);
+            }
+        });
+
+
+    }
+
+    public static void gettableData(String[] text) {
+        String patientinfo;
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        if (text[0].equals(""))
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst";
+        else if (text[1].equals("Name"))
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE lastname LIKE '" +text[0]+ "%'";
+        else
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE dateOfCheckup LIKE '" +text[0]+ "%'";
+        try {
+            model.setRowCount(0);
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(patientinfo);
+
+            while(queryResult.next()){
+                int id = queryResult.getInt("idpatient");
+                String firstname = queryResult.getString("givenname");
+                String middlename = queryResult.getString("middlename");
+                String surname = queryResult.getString("lastname");
+                String name = surname + ", " + firstname + " " + middlename;
+                Date date = queryResult.getDate("dateOfCheckup");
+
+                model.addRow(new Object[]{id,name,date});
+            }
+
+        }catch (Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == view){
+            int row = table.getSelectedRow();
+            value = table.getModel().getValueAt(row,0).toString();
+            date = table.getModel().getValueAt(row,2).toString();
+            table.clearSelection();
+            searchField.setText("");
+            sort_by.setSelectedIndex(0);
+            new PatientInformation();
+        }
     }
 }
-/*
-class MyComboBoxUI extends BasicComboBoxUI {
-    @Override
-    protected void installDefaults() {
-        super.installDefaults();
-        LookAndFeel.uninstallBorder(comboBox); //Uninstalls the LAF border for both button and label of combo box.
-    }
 
-    @Override
-    protected JButton createArrowButton() {
-        //Feel free to play with the colors:
-        final Color background = Color.white;
-        final Color pressedButtonBorderColor = background;
-        final Color triangle = Color.black;
-        final Color highlight = background;
-        final JButton button = new BasicArrowButton(BasicArrowButton.SOUTH, background, pressedButtonBorderColor, triangle, highlight);
-        button.setName("ComboBox.arrowButton"); //Mandatory, as per BasicComboBoxUI#createArrowButton().
-        return button;
-    }
-}*/
 

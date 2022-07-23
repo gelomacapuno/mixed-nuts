@@ -2,7 +2,6 @@ package mixed_nuts.admin;
 
 import mixed_nuts.components.ImageLabel;
 import mixed_nuts.components.MyPanel;
-import mixed_nuts.nurse.NurseMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ public class AdminHome extends JPanel {
     }
 
     private void setBGDesign() {
-        setBackground(new Color(0x142959));
+        setBackground(new Color(0xFFAE52));
 
         add(panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630));
         String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
@@ -39,7 +38,7 @@ public class AdminHome extends JPanel {
                 }
             }
         });
-        add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
+        add(new ImageLabel(new ImageIcon("admin_element.png"),248,25,817,660));
     }
 
 
