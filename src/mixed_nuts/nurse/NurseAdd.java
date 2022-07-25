@@ -39,7 +39,17 @@ public class NurseAdd extends JPanel implements ActionListener {
 
 
     private void addFields(){
-        add(addFormPanel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
+
+        addFormPanel = new MyPanel(new Color(255,255,255,120),15,75, 964,630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        add(addFormPanel);
+        addFormPanel.setOpaque(false);
         addFormPanel.setLayout(null);
         Font bente = new Font("Helvetica", Font.PLAIN, 20);
         String[] bloodTypes = {"--", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};

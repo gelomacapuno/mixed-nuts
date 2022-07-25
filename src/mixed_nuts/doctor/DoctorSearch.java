@@ -3,6 +3,8 @@ import mixed_nuts.components.*;
 import mixed_nuts.doctor.patient.PatientInformationDoctor;
 import mixed_nuts.util.DatabaseConnection;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -44,13 +46,41 @@ public class DoctorSearch extends JPanel implements ActionListener {
     }
 
     private void searchField(){
-        add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
+        panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        add(panel);
+        panel.setOpaque(false);
         panel.setLayout(null);
         panel.add(new MyLabel("Search:", Color.black,bente,25,22,78,33));
         panel.add(new MyLabel("Search By:", Color.black,bente,680,22,109,33));
 
         searchField = new MyTextField(null,120,22,531,40,bente);
         panel.add(searchField);
+        searchField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String[] t = {"",""};
+                t[0] = searchField.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                getTableData(t);
+            }
+        });
 
         String[] sortBy = {"Name","Date"};
         sort_by = new JComboBox<>(sortBy);

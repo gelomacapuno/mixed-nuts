@@ -63,7 +63,17 @@ public class NurseSearch extends JPanel implements ActionListener {
     }
 
     private void searchField(){
-        add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
+
+        panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        add(panel);
+        panel.setOpaque(false);
         panel.setLayout(null);
         panel.add(new MyLabel("Search:", Color.black,bente,25,22,78,33));
         panel.add(new MyLabel("Search By:", Color.black,bente,680,22,109,33));
@@ -188,11 +198,14 @@ public class NurseSearch extends JPanel implements ActionListener {
         Connection connectDB = connectNow.getConnection();
 
         if (text[0].equals(""))
-            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst";
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE department ='" +
+                    NurseMenu.dept+"';";
         else if (text[1].equals("Name"))
-            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE lastname LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst " +
+                    "WHERE lastname LIKE '" +text[0]+ "%' AND department = '"+NurseMenu.dept+"'";
         else
-            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE dateOfCheckup LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT idpatient, lastname, givenname, middlename, dateOfCheckup FROM patientst WHERE " +
+                    "dateOfCheckup LIKE '" +text[0]+ "%' AND department = '"+NurseMenu.dept+"';";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();

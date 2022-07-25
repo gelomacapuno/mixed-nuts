@@ -25,6 +25,7 @@ public class DoctorHome extends JPanel {
 
         MyPanel panel;
         add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
+        panel.setLayout(null);
         String greet = "Welcome! Dr. " + getDoctorName();
         String[] user = {greet, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);

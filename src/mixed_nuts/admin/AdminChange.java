@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AdminChange extends JPanel implements ActionListener{
-    private MyTextField currentField, newField,verifyField;
+    private JPasswordField currentField, newField,verifyField;
     private String curPass, newPass, verPass, check;
     private MyButton confirmButton;
     private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
@@ -30,7 +30,7 @@ public class AdminChange extends JPanel implements ActionListener{
 
         add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
         panel.setLayout(null);
-        String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
+        String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -42,10 +42,7 @@ public class AdminChange extends JPanel implements ActionListener{
                 if (userMenu.getSelectedItem().toString().equals("Change Password")){
                     userMenu.setSelectedIndex(0);
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")){
-                    userMenu.setSelectedIndex(0);
-                    AdminMenu.close();
-                }
+
             }
         });
 
@@ -59,12 +56,28 @@ public class AdminChange extends JPanel implements ActionListener{
         panel.add(new MyLabel("New Password:",Color.black,benteSingko,191,215,284,29));
         panel.add(new MyLabel("Verify New Password:",Color.black,benteSingko,191,301,284,29));
 
-        currentField = new MyTextField(null,504, 133, 193, 28,bente);
-        panel.add(currentField);
-        newField = new MyTextField(null,504, 193, 193, 28,bente);
-        panel.add(newField);
-        verifyField = new MyTextField(null,504, 301, 193, 28,bente);
-        panel.add(verifyField);
+
+        panel.add(currentField = new JPasswordField());
+        currentField.setEchoChar('*');
+        currentField.setBounds(504, 133, 193, 28);
+        currentField.setBorder(BorderFactory.createEmptyBorder());
+        currentField.setFont(bente);
+        currentField.setHorizontalAlignment(JTextField.CENTER);
+
+        panel.add(newField = new JPasswordField());
+        newField.setEchoChar('*');
+        newField.setBounds(504, 193, 193, 28);
+        newField.setBorder(BorderFactory.createEmptyBorder());
+        newField.setFont(bente);
+        newField.setHorizontalAlignment(JTextField.CENTER);
+
+        panel.add(verifyField = new JPasswordField());
+        verifyField.setEchoChar('*');
+        verifyField.setBounds(504, 301, 193, 28);
+        verifyField.setBorder(BorderFactory.createEmptyBorder());
+        verifyField.setFont(bente);
+        verifyField.setHorizontalAlignment(JTextField.CENTER);
+
 
         panel.add(confirmButton = new MyButton(new ImageIcon("confirm_logo.png"),761,337,161,41,null,null));
         confirmButton.addActionListener(this);

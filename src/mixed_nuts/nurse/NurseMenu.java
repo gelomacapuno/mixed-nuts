@@ -13,7 +13,9 @@ import java.awt.event.MouseEvent;
 
 public class NurseMenu extends JFrame implements ActionListener {
     private int posX, posY;
-    public String ida,position,dept;
+    public String ida;
+    public String position;
+    public static String dept;
     private static MyButton addButton;
     private static MyButton searchButton;
     private static MyButton homeButton;

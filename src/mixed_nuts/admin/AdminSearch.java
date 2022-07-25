@@ -35,8 +35,16 @@ public class AdminSearch extends JPanel implements ActionListener{
     private void setBGDesign(){
         setBackground(new Color(0xFFAE52));
 
-        add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
-        String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
+        add(panel);
+        panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -49,10 +57,7 @@ public class AdminSearch extends JPanel implements ActionListener{
                     userMenu.setSelectedIndex(0);
                     AdminMenu.changePass();
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")){
-                    userMenu.setSelectedIndex(0);
-                    AdminMenu.close();
-                }
+
             }
         });
 
@@ -61,7 +66,17 @@ public class AdminSearch extends JPanel implements ActionListener{
     }
 
     private void searchField(){
-        add(panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630));
+
+        panel = new MyPanel(new Color(255,255,255,120),15,75, 964,630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        add(panel);
+        panel.setOpaque(false);
         panel.setLayout(null);
         panel.add(new MyLabel("Search:", Color.black,bente,25,22,78,33));
         panel.add(new MyLabel("Search By:", Color.black,bente,680,22,109,33));
@@ -149,7 +164,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         pane.setBounds(24,105, 921,400);
         panel.add(pane);
 
-        view = new MyButton(new ImageIcon("view.png"),423,550,123,41,null,new Color(0xfde7cd));
+        view = new MyButton(new ImageIcon("view.png"),423,550,123,41,null,new Color(0xffd4a4));
         panel.add(view);
         view.setOpaque(true);
         view.setEnabled(false);

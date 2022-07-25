@@ -6,22 +6,13 @@ import mixed_nuts.components.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+
 
 public class HealthbookLoading extends JFrame{
     public MyLabel circle;
 
     //constructor method
     public HealthbookLoading()  {
-        try {
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("BebasNeue-Regular.otf")));
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Montserrat-Regular.tff")));
-        } catch (IOException |FontFormatException e) {
-            return;
-        }
         setHeader();
         setSize(1280, 720);
         setLayout(null);
@@ -42,6 +33,7 @@ public class HealthbookLoading extends JFrame{
             }
         }catch (Exception e){ JOptionPane.showMessageDialog(null, e);}
         this.setVisible(false);
+
         new LoginForm();
     }
 

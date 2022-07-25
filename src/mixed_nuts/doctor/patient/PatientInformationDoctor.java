@@ -24,19 +24,14 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
             lop, symptoms_info,diagnosis_info,medication_info,pulserate,doctor;
     private final JPanel panel = new JPanel();
     private JTextArea symptoms_content, diagnosis_content, medication_content;
-
+    private JPanel title_panel = new JPanel();
     public PatientInformationDoctor() {
         super("Patient Information");
         setSize(1280, 720);
-
         setUndecorated(true);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setResizable(true);
         setVisible(true);
         setLayout(null);
-
-        JPanel title_panel = new JPanel();
         title_panel.setLayout(null);
         title_panel.setBackground(new Color(0x212C58));
         title_panel.setBounds(0, 0, 1280, 100);
@@ -57,7 +52,8 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         });
 
         GetData();
-
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         back_button = new JButton(new ImageIcon("back.png"));
         back_button.setContentAreaFilled(false);

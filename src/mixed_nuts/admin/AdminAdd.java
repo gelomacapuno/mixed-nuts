@@ -30,10 +30,18 @@ public class AdminAdd extends JPanel implements ActionListener {
 
     private void setBGDesign() {
         setBackground(new Color(0xFFAE52));
-
-        add(panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630));
+        panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630){
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        panel.setOpaque(false);
+        add(panel);
         panel.setLayout(null);
-        String[] user = {"Welcome back! Admin", "Change Password", "Logout"};
+        String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630, 20, 350, 41);
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -45,10 +53,7 @@ public class AdminAdd extends JPanel implements ActionListener {
                     userMenu.setSelectedIndex(0);
                     AdminMenu.changePass();
                 }
-                if (userMenu.getSelectedItem().toString().equals("Logout")) {
-                    userMenu.setSelectedIndex(0);
-                    AdminMenu.close();
-                }
+
             }
         });
         add(new ImageLabel(new ImageIcon("admin_element.png"),380,25,817,660));
