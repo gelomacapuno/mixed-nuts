@@ -124,7 +124,11 @@ public class NurseSearch extends JPanel implements ActionListener {
 
     private void makeTable(){
         //table variable naming and addColumn
-        table = new JTable(new DefaultTableModel());
+        table = new JTable(new DefaultTableModel()){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            }
+        };
         pane = new JScrollPane(table);
         model = (DefaultTableModel) table.getModel();
         model.addColumn("Patient No.");

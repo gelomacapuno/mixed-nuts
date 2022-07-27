@@ -23,6 +23,7 @@ public class AdminHome extends JPanel {
 
         MyPanel panel;
         add(panel = new MyPanel(new Color(255, 255, 255, 120), 15, 75, 964, 630));
+        panel.setLayout(null);
         String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630, 20, 350, 41);
@@ -38,11 +39,11 @@ public class AdminHome extends JPanel {
 
             }
         });
-        panel.add(new MyLabel("Welcome to Healthbook!",Color.white,new Font("Helvetica", Font.PLAIN, 40),
+        panel.add(new MyLabel("Welcome to Healthbook!",Color.black,new Font("Helvetica", Font.PLAIN, 40),
                 17, 20, 894, 68));
-        panel.add(new MyLabel("Summary of Records",Color.white,new Font("Sans Serif", Font.PLAIN, 30),
+        panel.add(new MyLabel("Summary of Records",Color.black,new Font("Sans Serif", Font.PLAIN, 30),
                 347, 136, 286, 32));
-        panel.add(new MyLabel("View Records by Department",Color.white,new Font("Helvetica", Font.PLAIN, 25),
+        panel.add(new MyLabel("View Records by Department",Color.black,new Font("Helvetica", Font.PLAIN, 25),
                 327, 508, 330, 27));
 
         MyButton pieButton;

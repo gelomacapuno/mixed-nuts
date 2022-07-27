@@ -6,6 +6,8 @@ import mixed_nuts.components.MyPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 
 public class HealthbookLoading extends JFrame{
@@ -13,7 +15,17 @@ public class HealthbookLoading extends JFrame{
 
     //constructor method
     public HealthbookLoading()  {
-        setHeader();
+
+        try {
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("BebasNeue-Regular.otf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Montserrat-Regular.ttf")));
+        } catch (IOException |FontFormatException e) {
+            return;
+        }
+        //setHeader();
+        setUI();
         setSize(1280, 720);
         setLayout(null);
         setResizable(false);
@@ -25,7 +37,7 @@ public class HealthbookLoading extends JFrame{
         //To give time for the system to prepare the resources
         try{
             for (int i = 0; i <= 100; i++){
-                Thread.sleep(100);
+                Thread.sleep(70);
                 if(i == 0) circle.setText("Opening Application");
                 if(i == 26) circle.setText("Starting Database");
                 if(i == 51) circle.setText("Managing the Queries");
@@ -35,6 +47,20 @@ public class HealthbookLoading extends JFrame{
         this.setVisible(false);
 
         new LoginForm();
+    }
+
+    public void setUI(){
+
+        MyPanel head = new MyPanel(new Color(0x283469),0,0,1280,720);
+
+        head.setLayout(null);
+        head.add(new ImageLabel(new ImageIcon("healthbookloadingestetik.png"),-25,-50,650,640));
+        head.add(new ImageLabel(new ImageIcon("healthbookloadinglogo.png"),640,59,605,306));
+        head.add(circle = new MyLabel("Opening Application", Color.white, new Font("Helvetica", Font.PLAIN, 36),
+                768,583,500,73));
+        circle.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        circle.setLoadingSettings();
+        add(head);
     }
 
     public void setHeader() {

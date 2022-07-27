@@ -122,7 +122,11 @@ public class AdminSearch extends JPanel implements ActionListener{
 
     private void makeTable(){
         //table variable naming and addColumn
-        table = new JTable(new DefaultTableModel());
+        table = new JTable(new DefaultTableModel()){
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            }
+        };
         table.clearSelection();
         JScrollPane pane = new JScrollPane(table);
         model = (DefaultTableModel) table.getModel();
@@ -160,6 +164,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.getColumn("Employee Type").setCellRenderer(dtcr);
         table.getColumn("Department").setCellRenderer(dtcr);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         pane.setVisible(true);
         pane.setBounds(24,105, 921,400);
         panel.add(pane);
