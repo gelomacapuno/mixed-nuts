@@ -103,7 +103,6 @@ public class NurseSearch extends JPanel implements ActionListener {
         });
 
 
-
         sort_by.setBounds(800,22, 100,40);
         sort_by.addActionListener(new ActionListener() {
             @Override

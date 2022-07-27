@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class NurseHome extends JPanel  {
-    private MyButton pieButton;
 
     public MyPanel panel;
     public NurseHome(){
@@ -38,17 +37,6 @@ public class NurseHome extends JPanel  {
         userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
         add(userMenu);
 
-        panel.add(new MyLabel("Welcome to Healthbook!",Color.white,new Font("Helvetica", Font.PLAIN, 40),
-                17, 20, 894, 68));
-        panel.add(new MyLabel("Summary of Records",Color.white,new Font("Sans Serif", Font.PLAIN, 30),
-                347, 136, 286, 32));
-        panel.add(new MyLabel("View Records by Department",Color.white,new Font("Helvetica", Font.PLAIN, 25),
-                327, 508, 330, 27));
-
-        panel.add(pieButton = new MyButton(new ImageIcon("piegraph.png"),
-                275,231,430,242,null,null));
-        pieButton.addActionListener(e -> new PieChartForm());
-
         userMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +46,19 @@ public class NurseHome extends JPanel  {
                 }
             }
         });
+        panel.add(new MyLabel("Welcome to Healthbook!",Color.white,new Font("Helvetica", Font.PLAIN, 40),
+                17, 20, 894, 68));
+        panel.add(new MyLabel("Summary of Records",Color.white,new Font("Sans Serif", Font.PLAIN, 30),
+                347, 136, 286, 32));
+        panel.add(new MyLabel("View Records by Department",Color.white,new Font("Helvetica", Font.PLAIN, 25),
+                327, 508, 330, 27));
+
+        MyButton pieButton;
+        panel.add(pieButton = new MyButton(new ImageIcon("piegraph.png"),
+                275,231,430,242,null,null));
+        pieButton.addActionListener(e -> new PieChartForm());
+
+
 
         add(new ImageLabel(new ImageIcon("element_opacity.png"),248,25,817,660));
     }
