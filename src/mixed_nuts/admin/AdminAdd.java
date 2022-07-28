@@ -19,8 +19,8 @@ public class AdminAdd extends JPanel implements ActionListener {
     private JRadioButton doctorRadio, nurseRadio;
     private MyButton confirmButton;
     private MyTextField surnameField,givenField,middleField,empIDField;
-    private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
-    private final Font bente = new Font("Helvetica",Font.PLAIN,20);
+    private final Font benteSingko = new Font("Montserrat",Font.PLAIN,20);
+    private final Font bente = new Font("Montserrat",Font.PLAIN,20);
     public MyPanel panel;
     public AdminAdd(){
         setBGDesign();
@@ -44,7 +44,7 @@ public class AdminAdd extends JPanel implements ActionListener {
         String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630, 20, 350, 41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
         userMenu.addActionListener(new ActionListener() {
             @Override
@@ -93,7 +93,7 @@ public class AdminAdd extends JPanel implements ActionListener {
         passField.setEchoChar('•');
         passField.setBounds(232, 450, 230, 28);
         passField.setBorder(BorderFactory.createEmptyBorder());
-        passField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        passField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         passField.setHorizontalAlignment(JTextField.CENTER);
         add(passField);
 
@@ -102,7 +102,7 @@ public class AdminAdd extends JPanel implements ActionListener {
         verifyField.setEchoChar('•');
         verifyField.setBounds(232, 550, 230, 28);
         verifyField.setBorder(BorderFactory.createEmptyBorder());
-        verifyField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        verifyField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         verifyField.setHorizontalAlignment(JTextField.CENTER);
         add(verifyField);
 

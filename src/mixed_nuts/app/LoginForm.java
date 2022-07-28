@@ -58,9 +58,9 @@ public class LoginForm extends JFrame{
                 "Urology"};
         empDept = new JComboBox<>(department);
         empDept.setBounds(59,170,330,40);
-        empDept.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        empDept.setFont(new Font("Montserrat", Font.PLAIN, 22));
 
-        empID = new MyTextField("Employee ID", 59,240,330,40, new Font("Roboto",Font.PLAIN,22));
+        empID = new MyTextField("Employee ID", 59,240,330,40, new Font("Montserrat",Font.PLAIN,22));
         empID.setBackground(new Color(0xF1F1F1));
         empID.setHorizontalAlignment(SwingConstants.LEFT);
         empID.loginField();
@@ -84,7 +84,7 @@ public class LoginForm extends JFrame{
         empPassword.setEchoChar((char) 0);
         empPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
         empPassword.setBounds(59,320,330,40);
-        empPassword.setFont(new Font("Roboto", Font.PLAIN, 22));
+        empPassword.setFont(new Font("Montserrat", Font.PLAIN, 22));
         empPassword.setOpaque(false);
         empPassword.addFocusListener(new FocusListener() {
             @Override
@@ -108,7 +108,7 @@ public class LoginForm extends JFrame{
 
         //Submit Button
         DisplayPanel.add(login = new MyButton(new ImageIcon("signin.png"),
-                59,431,330,53,new Font("Arial", Font.PLAIN,40),null));
+                59,431,330,53,new Font("Montserrat", Font.PLAIN,40),null));
         login.addActionListener(e -> validateLogin());
 
         //All text fields

@@ -33,7 +33,7 @@ public class DoctorSearch extends JPanel implements ActionListener {
         String[] user = {greet, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(e -> {
@@ -85,7 +85,7 @@ public class DoctorSearch extends JPanel implements ActionListener {
         String[] sortBy = {"Name","Date"};
         sort_by = new JComboBox<>(sortBy);
         sort_by.setBounds(800,22, 100,40);
-        sort_by.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        sort_by.setFont(new Font("Montserrat", Font.PLAIN, 20));
         panel.add(sort_by);
         sort_by.setFocusable(false);
 
@@ -160,7 +160,7 @@ public class DoctorSearch extends JPanel implements ActionListener {
                 return d;
             }
         });
-        table.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        table.setFont(new Font("Montserrat", Font.PLAIN, 20));
         table.clearSelection();
         table.setBackground(Color.white);
         table.setForeground(Color.BLACK);
@@ -169,7 +169,7 @@ public class DoctorSearch extends JPanel implements ActionListener {
         table.setGridColor(Color.black);
         table.setFillsViewportHeight(true);
         table.setIntercellSpacing(new Dimension(97,6));
-        table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
+        table.getTableHeader().setFont(new Font("Montserrat", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
         table.getTableHeader().setForeground(Color.white);
         table.getColumnModel().getColumn(1).setPreferredWidth(250);
@@ -218,6 +218,6 @@ public class DoctorSearch extends JPanel implements ActionListener {
     private static DefaultTableModel model;
     public static String value,date;
     private JComboBox<String> sort_by;
-    private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
+    private final Font bente = new Font("Montserrat", Font.PLAIN, 20);
     private MyPanel panel;
 }

@@ -46,7 +46,7 @@ public class AboutWindow extends JFrame {
 
             JLabel about_title = new JLabel("About This Software");
             about_title.setForeground(Color.white);
-            about_title.setFont(new Font("Helvetica", Font.PLAIN, 36));
+            about_title.setFont(new Font("Montserrat", Font.PLAIN, 32));
             about_title.setVisible(true);
             about_title.setBounds(264, 36, 327, 54);
             title_panel.add(about_title);
@@ -75,10 +75,10 @@ public class AboutWindow extends JFrame {
             JLabel message = new JLabel(
                     "<html><div style='text-align: center;'>The <b>HealthBook</b> aims to help our Clinics to have a software-based records<br>" +
                             "for patients and their medical records using database. It has features that stores,<br>" +
-                            "manipulates and insert patient infortmation and store them based on what<br>storage " +
-                            "location it's placed on. It is made as a requirement for the developers subject" +
+                            "manipulates and insert patient information and store them based on what storage " +
+                            "location it is placed on. It is made as a requirement for the developers subject " +
                             "in their Object Oriented Programming.</div></html>");
-            message.setFont(new Font("Roboto", Font.PLAIN, 19));
+            message.setFont(new Font("Montserrat", Font.PLAIN, 15));
             message.setForeground(Color.white);
             message.setBounds(42, 206, 724, 126);
             roundedpanel.add(message);

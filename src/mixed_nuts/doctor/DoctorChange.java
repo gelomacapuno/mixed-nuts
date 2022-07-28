@@ -14,8 +14,8 @@ import static mixed_nuts.doctor.DoctorHome.getDoctorName;
 public class DoctorChange extends JPanel implements ActionListener{
     private String curPassword,newPassword,verifyPassword,check;
     private JPasswordField currentField,newField,verifyField;
-    private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
-    private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
+    private final Font bente = new Font("Montserrat", Font.PLAIN, 20);
+    private final Font benteSingko = new Font("Montserrat",Font.PLAIN,25);
     public MyPanel panel;
     public DoctorChange(){
         setBGDesign();
@@ -32,7 +32,7 @@ public class DoctorChange extends JPanel implements ActionListener{
         String[] user = {greet, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(e -> {
@@ -48,7 +48,7 @@ public class DoctorChange extends JPanel implements ActionListener{
     }
     private void changePassForm(){
         panel.add(new MyLabel("Change User Password",Color.black,
-                new Font("Helvetica",Font.PLAIN,40),22,19,460,55));
+                new Font("Montserrat",Font.PLAIN,30),22,19,460,55));
         panel.add(new MyLabel("Current Password:",Color.black,benteSingko,191,132,284,29));
         panel.add(new MyLabel("New Password:",Color.black,benteSingko,191,215,284,29));
         panel.add(new MyLabel("Verify New Password:",Color.black,benteSingko,191,301,284,29));

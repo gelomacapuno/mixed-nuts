@@ -56,7 +56,7 @@ public class PieChartForm extends JFrame{
         plot.setOutlinePaint(new Color(0x4b5576));
         plot.setLabelLinkPaint(Color.white);
         plot.setLabelBackgroundPaint(new Color(0x4d5579));
-        plot.setLabelFont(new Font("Helvetica", Font.PLAIN, 20));
+        plot.setLabelFont(new Font("Montserrat", Font.PLAIN, 20));
         plot.setLabelShadowPaint(null);
         plot.setLabelPaint(Color.white);
         plot.setLabelOutlinePaint(new Color(0x4d5579));
@@ -74,10 +74,8 @@ public class PieChartForm extends JFrame{
         }
 
         button1.addActionListener(e -> dispose());
-
-
-
-
+        titleLabel.setFont(new Font("Montserrat", Font.BOLD, 36));
+        button1.setFont(new Font("Montserrat", Font.BOLD, 26));
     }
 
     public int getValue(int j){
@@ -117,5 +115,6 @@ public class PieChartForm extends JFrame{
     private JPanel rootPanel;
     private JButton button1;
     private JScrollPane ff;
+    private JLabel titleLabel;
     private int posX, posY;
 }

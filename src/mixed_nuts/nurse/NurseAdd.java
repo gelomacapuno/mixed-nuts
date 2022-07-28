@@ -51,7 +51,7 @@ public class NurseAdd extends JPanel implements ActionListener {
         add(addFormPanel);
         addFormPanel.setOpaque(false);
         addFormPanel.setLayout(null);
-        Font bente = new Font("Helvetica", Font.PLAIN, 20);
+        Font bente = new Font("Montserrat", Font.PLAIN, 20);
         String[] bloodTypes = {"--", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
         String[] level = {"--","1","2","3","4","5","6","7","8","9","10",};
         
@@ -102,7 +102,7 @@ public class NurseAdd extends JPanel implements ActionListener {
         //ADDRESS FORM
         addressField = new JTextArea();
         addressField.setEditable(true);
-        addressField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        addressField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         addressField.setBounds(136,135, 772,59);
         addFormPanel.add(addressField);
 
@@ -110,7 +110,7 @@ public class NurseAdd extends JPanel implements ActionListener {
         birthField = new JDateChooser();
         birthField.setBounds(136, 213, 200, 28);
         birthField.setBorder(BorderFactory.createEmptyBorder());
-        birthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        birthField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         birthField.setDateFormatString("dd/MM/yyyy");
         addFormPanel.add(birthField);
         weightField = new MyTextField(null,136, 281, 100, 28,bente);
@@ -125,7 +125,7 @@ public class NurseAdd extends JPanel implements ActionListener {
 
         bloodtypeField = new JComboBox<>(bloodTypes);
         bloodtypeField.setBounds(136,349,100,28);
-        bloodtypeField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bloodtypeField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         addFormPanel.add(bloodtypeField);
         addFormPanel.add(bloodPressureField1 = new MyTextField(null,513,349,100,28,bente));
         addFormPanel.add(bloodPressureField2 = new MyTextField(null,647,349,100,28,bente));
@@ -134,7 +134,7 @@ public class NurseAdd extends JPanel implements ActionListener {
 
         levelofpainField = new JComboBox<>(level);
         levelofpainField.setBounds(136,478,100,28);
-        levelofpainField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        levelofpainField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         addFormPanel.add(levelofpainField);
 
 
@@ -149,7 +149,7 @@ public class NurseAdd extends JPanel implements ActionListener {
         String[] user = {respect, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(new ActionListener() {

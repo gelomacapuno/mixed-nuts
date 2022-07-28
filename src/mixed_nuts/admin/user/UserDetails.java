@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class UserDetails extends JFrame implements ActionListener{
     private MyTextField surnameField,givenField,middleField, usernameField, roleField,passwordField;
-    private Font bente = new Font("Helvetica", Font.PLAIN, 20);
+    private Font bente = new Font("Montserrat", Font.PLAIN, 20);
     private JComboBox<String> depts;
     private GridBag c;
     private RoundedPanel body_panel,smallFrame;
@@ -129,7 +129,7 @@ public class UserDetails extends JFrame implements ActionListener{
         c.setConstraints(GridBagConstraints.HORIZONTAL,0.5,0,0,1,20,33,2,0);
         body_panel.add(new MyLabel("Name:",Color.white,bente,0,0,0,0),c);
         c.setConstraints(GridBagConstraints.HORIZONTAL,1.0,1,1,1,15,33,2,0);
-        body_panel.add(new MyLabel("Surname",Color.white,bente,0,0,0,0),c);
+        body_panel.add(new MyLabel("Surname",Color.white,bente,4,0,0,0),c);
 
         surnameField = new MyTextField(null,0,0,0,0,bente);
         c.gridx = 1;
@@ -137,7 +137,7 @@ public class UserDetails extends JFrame implements ActionListener{
         body_panel.add(surnameField,c);
 
         c.setConstraints(GridBagConstraints.BOTH,1.0,2,1,1,15,33,2,0);
-        body_panel.add(new MyLabel("Given Name",Color.white,bente,0,0,0,0),c);
+        body_panel.add(new MyLabel("Given Name",Color.white,bente,4,0,0,0),c);
 
         givenField = new MyTextField(null,0,0,0,0,bente);
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -146,7 +146,7 @@ public class UserDetails extends JFrame implements ActionListener{
         body_panel.add(givenField,c);
 
         c.setConstraints(GridBagConstraints.BOTH,1.0,3,1,1,15,33,2,0);
-        body_panel.add(new MyLabel("Middle Name",Color.white,bente,0,0,0,0),c);
+        body_panel.add(new MyLabel("Middle Name",Color.white,bente,4,0,0,0),c);
 
         middleField = new MyTextField(null,0,0,0,0,bente);
         c.gridx = 3;

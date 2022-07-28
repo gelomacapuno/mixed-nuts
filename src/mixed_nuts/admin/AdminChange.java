@@ -16,8 +16,8 @@ public class AdminChange extends JPanel implements ActionListener{
     private JPasswordField currentField, newField,verifyField;
     private String curPass, newPass, verPass, check;
     private MyButton confirmButton;
-    private final Font benteSingko = new Font("Helvetica",Font.PLAIN,25);
-    private final Font bente = new Font("Helvetica",Font.PLAIN,20);
+    private final Font benteSingko = new Font("Montserrat",Font.PLAIN,25);
+    private final Font bente = new Font("Montserrat",Font.PLAIN,20);
     public MyPanel panel;
     public AdminChange(){
         setBGDesign();
@@ -33,7 +33,7 @@ public class AdminChange extends JPanel implements ActionListener{
         String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(new ActionListener() {
@@ -51,7 +51,7 @@ public class AdminChange extends JPanel implements ActionListener{
     }
     private void changePassForm(){
         panel.add(new MyLabel("Change Admin Password",Color.black,
-                new Font("Helvetica",Font.PLAIN,40),22,19,460,55));
+                new Font("Montserrat",Font.PLAIN,30),22,19,460,55));
         panel.add(new MyLabel("Current Password:",Color.black,benteSingko,191,132,284,29));
         panel.add(new MyLabel("New Password:",Color.black,benteSingko,191,215,284,29));
         panel.add(new MyLabel("Verify New Password:",Color.black,benteSingko,191,301,284,29));

@@ -34,7 +34,7 @@ public class NurseHome extends JPanel  {
         String[] user = {respect, "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(new ActionListener() {
@@ -46,12 +46,12 @@ public class NurseHome extends JPanel  {
                 }
             }
         });
-        panel.add(new MyLabel("Welcome to Healthbook!",Color.white,new Font("Helvetica", Font.PLAIN, 40),
+        panel.add(new MyLabel("Welcome to Healthbook!",Color.white,new Font("Montserrat", Font.BOLD, 40),
                 17, 20, 894, 68));
-        panel.add(new MyLabel("Summary of Records",Color.white,new Font("Sans Serif", Font.PLAIN, 30),
-                347, 136, 286, 32));
-        panel.add(new MyLabel("View Records by Department",Color.white,new Font("Helvetica", Font.PLAIN, 25),
-                327, 508, 330, 27));
+        panel.add(new MyLabel("Summary of Records",Color.white,new Font("Montserrat", Font.PLAIN, 25),
+                360, 136, 286, 32));
+        panel.add(new MyLabel("View Records by Department",Color.white,new Font("Montserrat", Font.PLAIN, 17),
+                370, 508, 330, 27));
 
         MyButton pieButton;
         panel.add(pieButton = new MyButton(new ImageIcon("piegraph.png"),

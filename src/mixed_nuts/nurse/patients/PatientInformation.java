@@ -33,7 +33,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     private JScrollPane scrollPane = new JScrollPane(panel);
     private MyButton confirm_edit,cancel_edit,back_button,addRecordButton,editPatient;
     private int X, Y;
-    private Font benteSingko = new Font("Helvetica", Font.PLAIN,25);
+    private Font benteSingko = new Font("Montserrat", Font.PLAIN,25);
     private JPasswordField adminPass;
 
     public PatientInformation() {
@@ -74,7 +74,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addRecordButton = new MyButton(new ImageIcon("addnewrecord.png"),1007,34,221,41,null,null);
         addRecordButton.addActionListener(this);
         title_panel.add(addRecordButton);
-        title_panel.add(new MyLabel("Patient Details",Color.white,new Font("Helvetica",Font.PLAIN,40),
+        title_panel.add(new MyLabel("Patient Details",Color.white,new Font("Montserrat",Font.PLAIN,30),
                 510,30,260,54));
 
 
@@ -161,8 +161,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.setConstraints(GridBagConstraints.BOTH,0,0,0,2,0,0,30,0);
         c.weighty = 0;
         adminAuthentication.add(new MyLabel("<html><div style= 'text-align:center;'>"+
-                "To make changes, type the Admin Employee ID to<br>allow this, and then " +
-                "click Confirm<div></html>",Color.white,benteSingko,0,0,0,0),c);
+                "To make changes, type the Admin password to<br>allow this, and then click Confirm.<div></html>",Color.white,benteSingko,0,0,0,0),c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,1,1,0,0,0,0);
         adminAuthentication.add(new MyLabel("Administrator",Color.white,benteSingko,0,0,0,0),c);
@@ -171,7 +170,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         adminPass = new JPasswordField(10);
         adminPass.setEchoChar('•');
         adminPass.setAlignmentX(Component.CENTER_ALIGNMENT);
-        adminPass.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        adminPass.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,2,2,0,0,20,0);
         adminAuthentication.add(adminPass,c);
 
@@ -260,58 +259,58 @@ public class PatientInformation extends JFrame implements ActionListener {
         GridBag c = new GridBag();
         c.setConstraints(GridBagConstraints.BOTH,0,0,0,1,40,41,2,0);
         vitalsigns.add(new MyLabel("Vital Signs",Color.white,
-                new Font("Helvetica",Font.BOLD,25),0,0,0,0),c);
+                new Font("Montserrat",Font.BOLD,25),0,0,0,0),c);
         c.setConstraints(0,0,1,1,15,41,2,0);
         vitalsigns.add(new MyLabel("Blood Pressure:",Color.white,
-                new Font("Helvetica",Font.PLAIN,20),0,0,0,0),c);
+                new Font("Montserrat",Font.PLAIN,20),0,0,0,0),c);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,1,1,15,41,2,0);
         blpField0 = new MyTextField("",0,0,0,0,
-                new Font("Helvetica",Font.PLAIN, 20));
+                new Font("Montserrat",Font.PLAIN, 20));
         blpField0.setColumns(10);
         vitalsigns.add(blpField0, c);
         c.setConstraints(GridBagConstraints.BOTH,0,0,2,1,15,41,2,0);
         vitalsigns.add(new MyLabel("Body Temperature:",Color.white,
-                new Font("Helvetica",Font.PLAIN,20),0,0,0,0), c);
+                new Font("Montserrat",Font.PLAIN,20),0,0,0,0), c);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,2,1,15,41,2,0);
-        tempeField = new MyTextField("",0,0,0,0,new Font("Helvetica",Font.PLAIN,20));
+        tempeField = new MyTextField("",0,0,0,0,new Font("Montserrat",Font.PLAIN,20));
         tempeField.setColumns(10);
         vitalsigns.add(tempeField, c);
         c.setConstraints(GridBagConstraints.BOTH,0,2,2,1,15,41,2,0);
-        vitalsigns.add(new MyLabel("°C",Color.white,new Font("Helvetica",Font.PLAIN, 20),
+        vitalsigns.add(new MyLabel("°C",Color.white,new Font("Montserrat",Font.PLAIN, 20),
                 0,0,0,0), c);
         c.setConstraints(GridBagConstraints.BOTH,0,0,3,1,15,41,2,0);
-        vitalsigns.add(new MyLabel("Pulse Rate:",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        vitalsigns.add(new MyLabel("Pulse Rate:",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0), c);
-        pulField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        pulField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,3,1,15,41,2,0);
         pulField.setColumns(10);
         vitalsigns.add(pulField, c);
         c.setConstraints(GridBagConstraints.BOTH,0,2,3,1,15,41,2,0);
-        vitalsigns.add(new MyLabel("bpm", Color.white,new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("bpm", Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
         c.setConstraints(GridBagConstraints.BOTH,0,0,4,1,15,41,14,0);
-        vitalsigns.add(new MyLabel("Level of Pain",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("Level of Pain",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
-        plevelField = new MyTextField("",0,0,0,0,new Font("Helvetica",Font.PLAIN,20));
+        plevelField = new MyTextField("",0,0,0,0,new Font("Montserrat",Font.PLAIN,20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,4,1,15,41,14,0);
         plevelField.setColumns(10);
         vitalsigns.add(plevelField, c);
 
         c.setConstraints(3,4,0,0,0,40);
-        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0),c);
 
 
         c.setConstraints(4,4,15,0,14,0);
-        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0),c);
 
         c.setConstraints(5,4,0,0,0,40);
-        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0),c);
 
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,5,2,0,0,0,40);
-        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Helvetica",Font.PLAIN,20),
+        vitalsigns.add(new MyLabel("space",new Color(0x4d5579),new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0),c);
 
 
@@ -334,47 +333,47 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Basic Details Title
         c.setConstraints(GridBagConstraints.BOTH,0,0,0,1,20,33,2,0);
-        body_panel.add(new MyLabel("Basic Details",Color.white,new Font("Helvetica",Font.BOLD,25),
+        body_panel.add(new MyLabel("Basic Details",Color.white,new Font("Montserrat",Font.BOLD,25),
                 0,0,0,0), c);
         c.setConstraints(GridBagConstraints.BOTH,0,0,1,1,15,33,2,0);
-        body_panel.add(new MyLabel("Name:",Color.white,new Font("Helvetica",Font.BOLD,20),
+        body_panel.add(new MyLabel("Name:",Color.white,new Font("Montserrat",Font.BOLD,20),
                 0,0,0,0), c);
 
         //Name
-        surnameField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN,20));
+        surnameField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN,20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,1,1,15,33,2,0);
         surnameField.setColumns(10);
         body_panel.add(surnameField, c);
-        middlenameFIeld = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN,20));
+        middlenameFIeld = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN,20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,3,1,1,15,33,2,0);
         middlenameFIeld.setColumns(10);
         body_panel.add(middlenameFIeld, c);
-        givennameField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN,20));
+        givennameField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN,20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,2,1,1,15,33,2,0);
         givennameField.setColumns(10);
         body_panel.add(givennameField, c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,1,2,1,15,33,2,0);
-        body_panel.add(new MyLabel("Surname",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Surname",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
         c.setConstraints(GridBagConstraints.BOTH,0,2,2,1,15,33,2,0);
-        body_panel.add(new MyLabel("Given Name",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Given Name",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
         c.setConstraints(GridBagConstraints.BOTH,0,3,2,1,15,33,2,0);
-        body_panel.add(new MyLabel("Middle Name",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Middle Name",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,3,1,15,33,2,0);
-        body_panel.add(new MyLabel("Sex:",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Sex:",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
 
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,3,1,15,33,2,0);
-        genderField = new MyTextField("",0,0,0,0,new Font("Helvetica",Font.PLAIN,20));
+        genderField = new MyTextField("",0,0,0,0,new Font("Montserrat",Font.PLAIN,20));
         body_panel.add(genderField, c);
 
         //Address
         c.setConstraints(GridBagConstraints.BOTH,0,0,4,1,15,33,2,0);
-        body_panel.add(new MyLabel("Address:",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Address:",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0), c);
 
 
@@ -384,7 +383,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addressField.setLineWrap(true);
         addressField.setWrapStyleWord(true);
         addressField.setEditable(true);
-        addressField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        addressField.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
         c.gridwidth = 2;
         c.gridx = 1;
@@ -394,10 +393,10 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Date of Birth:
         c.setConstraints(GridBagConstraints.BOTH,0,0,5,1,15,33,2,0);
-        body_panel.add(new MyLabel("Date of Birth:",Color.white,new Font("Helvetica",Font.PLAIN,20),
+        body_panel.add(new MyLabel("Date of Birth:",Color.white,new Font("Montserrat",Font.PLAIN,20),
                 0,0,0,0),c);
 
-        yearField = new MyTextField("",0,0,0,0,new Font("Helvetica",Font.PLAIN,20));
+        yearField = new MyTextField("",0,0,0,0,new Font("Montserrat",Font.PLAIN,20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,5,1,15,33,2,0);
         yearField.setColumns(4);
         body_panel.add(yearField, c);
@@ -408,96 +407,96 @@ public class PatientInformation extends JFrame implements ActionListener {
 */
 
         c.setConstraints(GridBagConstraints.BOTH,0,1,6,1,15,33,2,0);
-        body_panel.add(new MyLabel("YYYY",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("YYYY",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
 
-        monthField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        monthField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,2,5,1,15,33,2,0);
         monthField.setColumns(2);
         body_panel.add(monthField, c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,2,6,1,15,33,2,0);
-        body_panel.add(new MyLabel("MM",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("MM",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
-        dayField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        dayField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,3,5,1,15,33,2,0);
         dayField.setColumns(2);
         body_panel.add(dayField, c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,3,6,1,15,33,2,0);
-        body_panel.add(new MyLabel("DD",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("DD",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,7,1,15,33,2,0);
-        body_panel.add(new MyLabel("Blood Type:",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Blood Type:",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
 
-        btypeField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        btypeField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         btypeField.setColumns(10);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,7,1,15,33,2,0);
         body_panel.add(btypeField, c);
 
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,8,1,15,33,2,0);
-        body_panel.add(new MyLabel("Age:",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Age:",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
-        ageField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        ageField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         ageField.setColumns(10);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,8,1,15,33,2,0);
         body_panel.add(ageField, c);
 
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,9,1,15,33,2,0);
-        body_panel.add(new MyLabel("Height:",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Height:",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
 
-        heightField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        heightField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         heightField.setColumns(10);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,9,1,15,33,2,0);
         body_panel.add(heightField, c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,2,9,1,15,33,2,0);
-        body_panel.add(new MyLabel("cm",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("cm",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,0,10,1,15,33,35,0);
-        body_panel.add(new MyLabel("Weight:",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Weight:",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
-        weightField = new MyTextField("",0,0,0,0,new Font("Helvetica", Font.PLAIN, 20));
+        weightField = new MyTextField("",0,0,0,0,new Font("Montserrat", Font.PLAIN, 20));
         weightField.setColumns(10);
         c.setConstraints(GridBagConstraints.HORIZONTAL,0,1,10,1,15,33,35,0);
         body_panel.add(weightField, c);
 
         c.setConstraints(GridBagConstraints.BOTH,0,2,10,1,15,33,35,0);
-        body_panel.add(new MyLabel("kg",Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("kg",Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
 
 
         //Patient No.:
         c.setConstraints(GridBagConstraints.BOTH,0,5,1,1,15,33,5,0);
-        body_panel.add(new MyLabel("Patient No.: "+no,Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Patient No.: "+no,Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
         //Date:
         c.setConstraints(GridBagConstraints.BOTH,0,5,2,1,15,33,5,40);
-        body_panel.add(new MyLabel("Date: "+date,Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Date: "+date,Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
         //Dept:
         c.setConstraints(GridBagConstraints.BOTH,0,5,3,1,15,33,5,0);
-        body_panel.add(new MyLabel("Dept: "+department,Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Dept: "+department,Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
 
         //Date:
         c.setConstraints(GridBagConstraints.BOTH,0,5,4,1,15,33,5,0);
-        body_panel.add(new MyLabel("Doctor ID: " + doctor,Color.white,new Font("Helvetica", Font.PLAIN, 20),
+        body_panel.add(new MyLabel("Doctor ID: " + doctor,Color.white,new Font("Montserrat", Font.PLAIN, 20),
                 0,0,0,0),c);
 
     }
@@ -509,7 +508,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         JLabel oldpatientLabel = new JLabel("Add Old Patient");
         oldpatientLabel.setForeground(Color.white);
         oldpatientLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        oldpatientLabel.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        oldpatientLabel.setFont(new Font("Montserrat", Font.PLAIN, 40));
         oldpatientLabel.setVisible(true);
         panel.add(oldpatientLabel);
 
@@ -526,7 +525,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Vital Signs Title
         JLabel vitalSignsLabel = new JLabel("Vital Signs");
-        vitalSignsLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
+        vitalSignsLabel.setFont(new Font("Montserrat", Font.BOLD, 25));
         vitalSignsLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -538,7 +537,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Blood Pressure
         JLabel bpLabel = new JLabel("Blood Pressure: ");
-        bpLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         bpLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -548,14 +547,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(bpLabel, c);
 
         bpEntry0 = new JTextField(3);
-        bpEntry0.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpEntry0.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 1;
         addOldPatient.add(bpEntry0, c);
 
         JLabel slash = new JLabel("/");
-        slash.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        slash.setFont(new Font("Montserrat", Font.PLAIN, 20));
         slash.setHorizontalAlignment(JLabel.CENTER);
         slash.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
@@ -567,7 +566,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.weightx = 1;
 
         bpEntry1 = new JTextField(3);
-        bpEntry1.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpEntry1.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 3;
         c.gridy = 1;
@@ -575,7 +574,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
 
         JLabel space = new JLabel("");
-        space.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        space.setFont(new Font("Montserrat", Font.PLAIN, 20));
         space.setForeground(new Color(0x4d5579));
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -585,7 +584,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature:");
-        tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        tempLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         tempLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -594,7 +593,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(tempLabel, c);
 
         tempEntry = new JTextField(5);
-        tempEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        tempEntry.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         tempEntry.addKeyListener(new KeyAdapter() {
             @Override
@@ -608,7 +607,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(tempEntry, c);
 
         JLabel celsius = new JLabel("°C");
-        celsius.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        celsius.setFont(new Font("Montserrat", Font.PLAIN, 20));
         celsius.setForeground(Color.white);
         celsius.setHorizontalAlignment(JLabel.CENTER);
         c.fill = GridBagConstraints.BOTH;
@@ -621,7 +620,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Pulse Rate
         JLabel pulseLabel = new JLabel("Pulse Rate:");
-        pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         pulseLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -630,14 +629,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(pulseLabel, c);
 
         pulseEntry = new JTextField(5);
-        pulseEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseEntry.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 3;
         addOldPatient.add(pulseEntry, c);
 
         JLabel bpm = new JLabel("bpm");
-        bpm.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpm.setFont(new Font("Montserrat", Font.PLAIN, 20));
         bpm.setForeground(Color.white);
         bpm.setHorizontalAlignment(JLabel.CENTER);
         c.fill = GridBagConstraints.BOTH;
@@ -648,7 +647,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Level of Pain:
         JLabel painLabel = new JLabel("Level of Pain:");
-        painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        painLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         painLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
@@ -657,7 +656,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(painLabel, c);
 
         painEntry = new JComboBox<>(level);
-        painEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        painEntry.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 4;
@@ -665,7 +664,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Height:
         JLabel heightLabel = new JLabel("Height:");
-        heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        heightLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         heightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
@@ -674,7 +673,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(heightLabel, c);
 
         heightEntry = new JTextField(5);
-        heightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        heightEntry.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 5;
@@ -688,7 +687,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(heightEntry, c);
 
         JLabel cm = new JLabel("cm");
-        cm.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        cm.setFont(new Font("Montserrat", Font.PLAIN, 20));
         cm.setHorizontalAlignment(JLabel.CENTER);
         cm.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
@@ -699,7 +698,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         //Weight:
         JLabel weightLabel = new JLabel("Weight:");
-        weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        weightLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         weightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
@@ -708,7 +707,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(weightLabel, c);
 
         weightEntry = new JTextField(5);
-        weightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        weightEntry.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 6;
@@ -722,7 +721,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(weightEntry, c);
 
         JLabel kg = new JLabel("kg");
-        kg.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        kg.setFont(new Font("Montserrat", Font.PLAIN, 20));
         kg.setForeground(Color.white);
         kg.setHorizontalAlignment(JLabel.CENTER);
         c.fill = GridBagConstraints.BOTH;

@@ -24,7 +24,7 @@ public class AdminSearch extends JPanel implements ActionListener{
     private MyButton view;
     private JTable table;
     public static DefaultTableModel model;
-    private final Font bente = new Font("Helvetica", Font.PLAIN, 20);
+    private final Font bente = new Font("Montserrat", Font.PLAIN, 20);
     private MyPanel panel;
     public AdminSearch(){
         searchField();
@@ -47,7 +47,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         String[] user = {"Welcome back! Admin", "Change Password"};
         JComboBox<String> userMenu = new JComboBox<>(user);
         userMenu.setBounds(630,20,350,41);
-        userMenu.setFont(new Font("Helvetica", Font.PLAIN, 22));
+        userMenu.setFont(new Font("Montserrat", Font.PLAIN, 22));
         add(userMenu);
 
         userMenu.addActionListener(new ActionListener() {
@@ -89,7 +89,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         "Neurology","Oncology","Ophthalmology","Orthopaedics","Otolaryngology","Urology"};
         JComboBox<String> sort_by = new JComboBox<>(sortBy);
         sort_by.setBounds(800,22, 100,40);
-        sort_by.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        sort_by.setFont(new Font("Montserrat", Font.PLAIN, 20));
         sort_by.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,6 +135,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         model.addColumn("Employee Type");
         model.addColumn("Department");
 
+
         //table configuration
         table.setTableHeader(new JTableHeader(table.getColumnModel()){
             public Dimension getPreferredSize(){
@@ -143,7 +144,7 @@ public class AdminSearch extends JPanel implements ActionListener{
                 return d;
             }
         });
-        table.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        table.setFont(new Font("Montserrat", Font.PLAIN, 20));
         table.clearSelection();
         table.setBackground(Color.white);
         table.setForeground(Color.BLACK);
@@ -152,7 +153,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.setGridColor(Color.black);
         table.setFillsViewportHeight(true);
         table.setIntercellSpacing(new Dimension(97,6));
-        table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
+        table.getTableHeader().setFont(new Font("Montserrat", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
         table.getTableHeader().setForeground(Color.white);
         table.getColumnModel().getColumn(1).setPreferredWidth(240);

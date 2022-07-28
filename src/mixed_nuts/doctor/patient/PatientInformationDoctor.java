@@ -66,7 +66,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         JLabel patient_details = new JLabel("Patient Details");
         patient_details.setForeground(Color.white);
-        patient_details.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        patient_details.setFont(new Font("Montserrat", Font.PLAIN, 35));
         patient_details.setVisible(true);
         patient_details.setBounds(510, 30, 260, 54);
         title_panel.add(patient_details);
@@ -136,7 +136,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         JLabel patient_form = new JLabel("Patient Form");
         patient_form.setForeground(Color.white);
-        patient_form.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        patient_form.setFont(new Font("Montserrat", Font.PLAIN, 40));
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
         c.insets = new Insets(20, 23, 20, 0);
@@ -181,7 +181,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Basic Details Title
         JLabel symptoms_label = new JLabel("Symptoms");
-        symptoms_label.setFont(new Font("Helvetica", Font.BOLD, 25));
+        symptoms_label.setFont(new Font("Montserrat", Font.BOLD, 25));
         symptoms_label.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -200,7 +200,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         symptoms_content.setBackground(new Color(0x4d5579));
         symptoms_content.setForeground(Color.white);
         symptoms_content.setBorder(new LineBorder(Color.WHITE,2));
-        symptoms_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        symptoms_content.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
@@ -222,7 +222,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Basic Details Title
         JLabel diagnosis_label = new JLabel("Diagnosis");
-        diagnosis_label.setFont(new Font("Helvetica", Font.BOLD, 25));
+        diagnosis_label.setFont(new Font("Montserrat", Font.BOLD, 25));
         diagnosis_label.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -241,7 +241,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         diagnosis_content.setBackground(new Color(0x4d5579));
         diagnosis_content.setForeground(Color.white);
         diagnosis_content.setBorder(new LineBorder(Color.WHITE,2));
-        diagnosis_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        diagnosis_content.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
@@ -263,7 +263,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Basic Details Title
         JLabel medication_label = new JLabel("Medication");
-        medication_label.setFont(new Font("Helvetica", Font.BOLD, 25));
+        medication_label.setFont(new Font("Montserrat", Font.BOLD, 25));
         medication_label.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -282,7 +282,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         medication_content.setBackground(new Color(0x4d5579));
         medication_content.setForeground(Color.white);
         medication_content.setBorder(new LineBorder(Color.WHITE,2));
-        medication_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        medication_content.setFont(new Font("Montserrat", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
@@ -310,7 +310,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Vital Signs Title
         JLabel vitalSignsLabel = new JLabel("Vital Signs");
-        vitalSignsLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
+        vitalSignsLabel.setFont(new Font("Montserrat", Font.BOLD, 25));
         vitalSignsLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -322,7 +322,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Blood Pressure
         JLabel bpLabel = new JLabel("Blood Pressure: " + bp);
-        bpLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         bpLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -332,7 +332,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature: " + temp);
-        tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        tempLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         tempLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -342,7 +342,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Pulse Rate
         JLabel pulseLabel = new JLabel("Pulse Rate: " + pulse);
-        pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         pulseLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -352,7 +352,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Level of Pain:
         JLabel painLabel = new JLabel("Level of Pain: " + pain);
-        painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        painLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         painLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
@@ -387,7 +387,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Basic Details Title
         JLabel basicDetails = new JLabel("Basic Details");
-        basicDetails.setFont(new Font("Helvetica", Font.BOLD, 25));
+        basicDetails.setFont(new Font("Montserrat", Font.BOLD, 25));
         basicDetails.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
@@ -399,7 +399,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Name
         JLabel nameLabel = new JLabel("Name: " + name);
-        nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        nameLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         nameLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -409,7 +409,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Sex
         JLabel sexLabel = new JLabel("Sex: " + sex);
-        sexLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        sexLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         sexLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -419,7 +419,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Address
         JLabel addressLabel = new JLabel("Address: " + address);
-        addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        addressLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         addressLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -429,7 +429,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Date of Birth:
         JLabel birthLabel = new JLabel("Date of Birth: " + birth);
-        birthLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        birthLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         birthLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -439,7 +439,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Blood Type:
         JLabel bloodTypeLabel = new JLabel("Blood Type: " + bloodtype);
-        bloodTypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bloodTypeLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         bloodTypeLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -449,7 +449,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Age:
         JLabel ageLabel = new JLabel("Age: " + age);
-        ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        ageLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         ageLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -459,7 +459,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Height
         JLabel heightLabel = new JLabel("Height: " + height + " cm");
-        heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        heightLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         heightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
@@ -469,7 +469,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Weight
         JLabel weightLabel = new JLabel("Weight: " + weight + " kg");
-        weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        weightLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         weightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
@@ -479,7 +479,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Patient No.:
         JLabel patientNoLabel = new JLabel("Patient No.: " + no);
-        patientNoLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        patientNoLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         patientNoLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 5, 0);
@@ -489,7 +489,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         //Date:
         JLabel DateLabel = new JLabel("Date: " + date);
-        DateLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        DateLabel.setFont(new Font("Montserrat", Font.PLAIN, 20));
         DateLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 5, 0);

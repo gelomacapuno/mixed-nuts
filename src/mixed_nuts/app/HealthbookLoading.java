@@ -56,7 +56,7 @@ public class HealthbookLoading extends JFrame{
         head.setLayout(null);
         head.add(new ImageLabel(new ImageIcon("healthbookloadingestetik.png"),-25,-50,650,640));
         head.add(new ImageLabel(new ImageIcon("healthbookloadinglogo.png"),640,59,605,306));
-        head.add(circle = new MyLabel("Opening Application", Color.white, new Font("Helvetica", Font.PLAIN, 36),
+        head.add(circle = new MyLabel("Opening Application", Color.white, new Font("Montserrat", Font.PLAIN, 36),
                 768,583,500,73));
         circle.setAlignmentX(Component.RIGHT_ALIGNMENT);
         circle.setLoadingSettings();
@@ -78,7 +78,7 @@ public class HealthbookLoading extends JFrame{
         head.add(new MyLabel(" ",new Color(0x283469),null,0,0,0,0), constraints);
         constraints.setConstraints(0,3,1,0,0,0,0);
         head.add(new MyLabel(" ",new Color(0x283469),null,0,0,0,0),constraints);
-        circle = new MyLabel("Opening Application", Color.white, new Font("Helvetica", Font.PLAIN, 36),
+        circle = new MyLabel("Opening Application", Color.white, new Font("Montserrat", Font.PLAIN, 36),
                 0,0,0,0);
         circle.setLoadingSettings();
         constraints.setConstraints(GridBagConstraints.LINE_END,1.0, 3,3,1,0,40,0,0);

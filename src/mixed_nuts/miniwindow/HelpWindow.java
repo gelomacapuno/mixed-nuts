@@ -47,7 +47,7 @@ public class HelpWindow extends JFrame{
 
             JLabel about_title = new JLabel("Help");
             about_title.setForeground(Color.white);
-            about_title.setFont(new Font("Helvetica", Font.PLAIN, 36));
+            about_title.setFont(new Font("Montserrat", Font.BOLD, 36));
             about_title.setVisible(true);
             about_title.setBounds(390, 38, 327, 54);
             title_panel.add(about_title);
@@ -67,10 +67,10 @@ public class HelpWindow extends JFrame{
 
             JLabel message = new JLabel(
                     "<html><div style='text-align: center;'>" +
-                            "The Information System is made for the purpose of storing Patient<br>" +
-                            "Medical Information in a Clinic Hub Environment. The following are the" +
-                            "positions and functionalities for employees:</div></html>");
-            message.setFont(new Font("Roboto", Font.PLAIN, 15));
+                            "The Information System is made for the purpose of storing Patient Medical Information in a Clinic Hub Environment. " +
+                            "The following are the" +
+                            " positions and functionalities for employees:</div></html>");
+            message.setFont(new Font("Montserrat", Font.PLAIN, 15));
             message.setForeground(Color.white);
             message.setBounds(162, 21, 470, 62);
             roundedpanel.add(message);
